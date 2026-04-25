@@ -459,4 +459,731 @@ footer {
 .req-success.show { display:block; animation:reveal 0.4s ease forwards; }
 .req-success-icon { font-size:40px; margin-bottom:16px; }
 .req-success h3 { font-family:'Playfair Display',serif; font-size:20px; margin-bottom:8px; }
-.req-success p
+.req-success p{ font-size:14px; font-weight:300; color:var(--muted); margin-bottom:24px; line-height:1.7; }
+.req-success-links { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+/* INVOICE */
+.invoice-doc { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:40px; margin-bottom:20px; display:none; }
+.invoice-doc.show { display:block; animation:reveal 0.4s ease forwards; }
+.invoice-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:32px; }
+.invoice-brand { font-family:'Playfair Display',serif; font-size:24px; font-weight:600; }
+.invoice-brand span { color:var(--accent2); }
+.invoice-meta { text-align:right; }
+.invoice-num { font-family:'Playfair Display',serif; font-size:18px; color:var(--accent); }
+.invoice-date { font-size:12px; color:var(--muted); margin-top:4px; }
+.invoice-status { display:inline-block; margin-top:8px; background:#fef9ec; color:#9a7020; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; padding:3px 10px; border-radius:100px; }
+.invoice-parties { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-bottom:32px; }
+.party h5 { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted); margin-bottom:8px; }
+.party p { font-size:14px; line-height:1.65; }
+.invoice-total-row { display:flex; justify-content:flex-end; margin-top:16px; }
+.invoice-total-box { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:16px 24px; text-align:right; min-width:200px; }
+.invoice-total-label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
+.invoice-total-amount { font-family:'Playfair Display',serif; font-size:30px; color:var(--accent); }
+
+.followup-item { display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--border); }
+.followup-item:last-child { border-bottom:none; }
+.f-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.f-dot.done { background:var(--accent); }
+.f-dot.pending { background:var(--accent2); }
+.f-dot.future { background:var(--border); }
+.f-text { flex:1; font-size:13.5px; font-weight:300; }
+.f-day { font-size:12px; color:var(--muted); }
+
+/* SCHEDULE */
+.schedule-row { display:grid; grid-template-columns:110px 1fr auto; align-items:center; gap:16px; background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:14px 16px; margin-bottom:10px; transition:background 0.2s; }
+.schedule-row:hover { background:var(--surface); }
+.schedule-day-badge { background:var(--accent-lt); color:var(--accent); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; padding:4px 10px; border-radius:100px; white-space:nowrap; text-align:center; }
+.schedule-job { font-size:13.5px; font-weight:400; }
+.schedule-worker-name { font-size:13px; font-weight:600; color:var(--accent); white-space:nowrap; }
+
+/* SCROLL REVEAL */
+@keyframes reveal { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav { padding:0 24px; }
+  .hero,.section { padding-left:24px; padding-right:24px; }
+  .demos-grid { grid-template-columns:repeat(2,1fr); }
+  .how-grid { grid-template-columns:repeat(2,1fr); }
+  .how-step:nth-child(2){ border-right:none; }
+  .how-step:nth-child(3){ border-top:1px solid var(--border); }
+  .zero-band { margin:0 24px; padding:40px 32px; }
+  .demo-page-wrap { padding:calc(var(--nav-h)+32px) 24px 60px; }
+  footer { padding:40px 24px 28px; }
+}
+@media(max-width:600px){
+  .nav-pill { display:none; }
+  .demos-grid { grid-template-columns:1fr; }
+  .how-grid { grid-template-columns:1fr; }
+  .how-step { border-right:none !important; border-bottom:1px solid var(--border); }
+  .how-step:last-child { border-bottom:none; }
+  .pillars-grid { grid-template-columns:1fr; }
+  .trust-divider { display:none; }
+  .zero-band { flex-direction:column; padding:32px 24px; }
+  .metrics-row { grid-template-columns:1fr 1fr; }
+  .form-grid { grid-template-columns:1fr; }
+  .invoice-parties { grid-template-columns:1fr; }
+  .footer-inner { flex-direction:column; align-items:flex-start; }
+  .req-modal { padding:28px 24px; }
+  .schedule-row { grid-template-columns:1fr; gap:6px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">Demo<span>Hub</span></div>
+  <div class="nav-right">
+    <span class="nav-pill" onclick="showPage('home');setTimeout(()=>document.getElementById('demos').scrollIntoView({behavior:'smooth'}),100)" style="cursor:pointer">Demos</span>
+    <a href="https://cal.com/vikram-cal/30min" target="_blank" class="nav-pill">Book a Call</a>
+    <button class="nav-btn" onclick="openReq('Navigation')">Send Requirement</button>
+  </div>
+</nav>
+
+<!-- REQUIREMENT MODAL -->
+<div class="req-overlay" id="req-overlay" onclick="closeReqIfOutside(event)">
+  <div class="req-modal">
+    <button class="req-modal-close" onclick="closeReq()">✕</button>
+    <div id="req-form-wrap">
+      <h2>Send Your Requirement</h2>
+      <p class="sub">Describe what you need automated. The more detail the better.</p>
+      <div class="form-row"><label>Your Name</label><input type="text" id="req-name" placeholder="Jane Smith"/></div>
+      <div class="form-row">
+        <label>Email <span style="color:var(--accent2)">*</span></label>
+        <input type="email" id="req-email" placeholder="jane@yourbusiness.com"/>
+        <div class="form-hint">Required — so I can get back to you.</div>
+      </div>
+      <div class="form-row"><label>What do you need automated?</label><textarea id="req-detail" placeholder="e.g. We track worker hours manually every week for 15 employees. Takes about 3 hours. We also chase clients for payment by hand..."></textarea></div>
+      <input type="hidden" id="req-demo-source" value=""/>
+      <button class="generate-btn" onclick="submitRequirement()" id="req-submit-btn">Send Requirement</button>
+    </div>
+    <div class="req-success" id="req-success">
+      <div class="req-success-icon">✓</div>
+      <h3>Requirement received.</h3>
+      <p>I will get back to you within 24 hours. Feel free to reach out directly in the meantime.</p>
+      <div class="req-success-links">
+        <a href="mailto:vikrampatilwork@gmail.com" class="btn-primary">Send an Email</a>
+        <a href="https://cal.com/vikram-cal/30min" target="_blank" class="btn-ghost">Book a Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-tag">Google Workspace Automation</div>
+    <h1>The work your team repeats<br>every week <em>shouldn't<br>need a person.</em></h1>
+    <p class="hero-sub">Try the live demos. See what gets automated and what the output looks like — before committing to anything.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('demos').scrollIntoView({behavior:'smooth'})">Explore Demos ↓</button>
+      <a href="https://cal.com/vikram-cal/30min" target="_blank" class="btn-ghost">Book a Free Call</a>
+    </div>
+    <div class="trust-bar">
+      <div class="trust-item"><div class="trust-val">$0</div><div class="trust-label">Ongoing Software Cost</div></div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><div class="trust-val">6</div><div class="trust-label">Live Demos</div></div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><div class="trust-val">Google</div><div class="trust-label">Tools You Already Have</div></div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><div class="trust-val">24hr</div><div class="trust-label">Response Guarantee</div></div>
+    </div>
+  </div>
+
+  <div class="section" id="demos">
+    <div class="reveal">
+      <div class="section-eyebrow">Live Demos</div>
+      <h2 class="section-title">Pick the problem<br>that sounds familiar.</h2>
+      <p class="section-sub">Enter your real numbers. See a formatted output in seconds. No signup, no setup.</p>
+    </div>
+    <div class="demos-grid reveal">
+      <div class="demo-card" onclick="showDemo('payroll')">
+        <div class="demo-icon-wrap">⏱️</div>
+        <div class="demo-card-title">Calculate my team's pay this week</div>
+        <div class="demo-card-desc">Workers log hours, the system totals pay and overtime. No manual spreadsheet work.</div>
+        <div class="demo-card-footer"><div class="demo-card-label">Attendance + Payroll</div><div class="demo-arrow">→</div></div>
+      </div>
+      <div class="demo-card" onclick="showDemo('schedule')">
+        <div class="demo-icon-wrap">📋</div>
+        <div class="demo-card-title">Build this week's job schedule</div>
+        <div class="demo-card-desc">Assign workers to jobs. System formats the week and notifies each person automatically.</div>
+        <div class="demo-card-footer"><div class="demo-card-label">Job Scheduling</div><div class="demo-arrow">→</div></div>
+      </div>
+      <div class="demo-card" onclick="showDemo('invoice')">
+        <div class="demo-icon-wrap">📄</div>
+        <div class="demo-card-title">Turn this quote into an invoice</div>
+        <div class="demo-card-desc">Client approved the job. Generate the invoice instantly with automatic follow ups until they pay.</div>
+        <div class="demo-card-footer"><div class="demo-card-label">Quote to Invoice</div><div class="demo-arrow">→</div></div>
+      </div>
+      <div class="demo-card" onclick="showDemo('expense')">
+        <div class="demo-icon-wrap">💰</div>
+        <div class="demo-card-title">See what each job actually costs</div>
+        <div class="demo-card-desc">Log fuel, materials, and labour per job. See profit margin without touching a calculator.</div>
+        <div class="demo-card-footer"><div class="demo-card-label">Expense per Job</div><div class="demo-arrow">→</div></div>
+      </div>
+      <div class="demo-card" onclick="showDemo('billing')">
+        <div class="demo-icon-wrap">🔁</div>
+        <div class="demo-card-title">Bill my regular clients on schedule</div>
+        <div class="demo-card-desc">Weekly or monthly clients get invoiced automatically. Follow ups run until payment is confirmed.</div>
+        <div class="demo-card-footer"><div class="demo-card-label">Recurring Billing</div><div class="demo-arrow">→</div></div>
+      </div>
+      <div class="demo-card" onclick="showDemo('report')">
+        <div class="demo-icon-wrap">📊</div>
+        <div class="demo-card-title">Get my weekly business summary</div>
+        <div class="demo-card-desc">Enter your numbers. Get a formatted report with a written performance summary sent to your inbox.</div>
+        <div class="demo-card-footer"><div class="demo-card-label">Business Report</div><div class="demo-arrow">→</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0">
+    <div class="reveal">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-title">Try it. Then decide.</h2>
+      <p class="section-sub">No pressure. The demo does the talking.</p>
+    </div>
+    <div class="how-grid reveal">
+      <div class="how-step"><div class="how-num">01</div><div class="how-title">Pick a demo</div><div class="how-desc">Choose the one that matches your biggest manual task right now.</div></div>
+      <div class="how-step"><div class="how-num">02</div><div class="how-title">Enter your data</div><div class="how-desc">Fill in a short form with numbers from your actual business.</div></div>
+      <div class="how-step"><div class="how-num">03</div><div class="how-title">See the output</div><div class="how-desc">A formatted result appears. That is what the automation delivers, every time.</div></div>
+      <div class="how-step"><div class="how-num">04</div><div class="how-title">Get in touch</div><div class="how-desc">If it makes sense for your business, send a requirement or book a call.</div></div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="reveal">
+      <div class="section-eyebrow">Why It Works</div>
+      <h2 class="section-title">No new software.<br>No new habits.</h2>
+      <p class="section-sub">It fits into what your team already does. That is why it actually gets used.</p>
+    </div>
+    <div class="pillars-grid reveal">
+      <div class="pillar"><div class="pillar-num">01</div><div class="pillar-body"><h4>Works on any device</h4><p>Your team logs data from phone or desktop. No app to install, no new system to learn.</p></div></div>
+      <div class="pillar"><div class="pillar-num">02</div><div class="pillar-body"><h4>Your data stays in your Drive</h4><p>Everything lives in your own Google Drive. Nothing leaves your account.</p></div></div>
+      <div class="pillar"><div class="pillar-num">03</div><div class="pillar-body"><h4>Outputs go where they need to</h4><p>Reports, invoices, and follow ups deliver to the right inbox at the right time.</p></div></div>
+      <div class="pillar"><div class="pillar-num">04</div><div class="pillar-body"><h4>Handed over fast, you own it</h4><p>Most systems are built and handed over within a week. You own the files completely after delivery.</p></div></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-author">
+        <div class="author-avatar">V</div>
+        <div class="author-info"><h4>Vikram Patil</h4><p>Automation Consultant — Google Workspace</p></div>
+      </div>
+      <div class="footer-links">
+        <a href="https://cal.com/vikram-cal/30min" target="_blank" class="footer-link">Book a Call</a>
+        <a href="mailto:vikrampatilwork@gmail.com" class="footer-link">Email</a>
+        <button class="footer-link" onclick="openReq('Footer')">Send Requirement</button>
+      </div>
+    </div>
+    <div class="footer-copy">All demos run on Google Sheets and Apps Script. Zero ongoing software cost.</div>
+  </footer>
+</div>
+
+<!-- PAYROLL DEMO -->
+<div class="page" id="page-payroll">
+  <div class="demo-page-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Back to all demos</button>
+    <div class="demo-page-header">
+      <div class="demo-page-icon">⏱️</div>
+      <h1>Calculate my team's pay this week</h1>
+      <p>Enter your workers and hours. The system calculates total pay, overtime, and produces a payroll summary ready to act on.</p>
+    </div>
+    <div class="meta-pills">
+      <span class="meta-pill">Google Sheets + Apps Script</span>
+      <span class="meta-pill">Overtime calculated automatically</span>
+      <span class="meta-pill">0 ongoing software cost</span>
+    </div>
+    <div class="demo-form">
+      <div class="form-grid">
+        <div class="form-row"><label>Business Name</label><input type="text" id="pay-biz" placeholder="e.g. Apex Cleaning"/></div>
+        <div class="form-row"><label>Pay Period</label><select id="pay-period"><option>This Week</option><option>Last Week</option></select></div>
+      </div>
+      <div class="form-row"><label>Overtime threshold (hrs/week)</label><input type="number" id="pay-ot" placeholder="40" value="40"/><div class="form-hint">Hours above this are paid at 1.5x rate.</div></div>
+      <div class="form-row"><label>Hourly Rate ($)</label><input type="number" id="pay-rate" placeholder="e.g. 18"/></div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:12px;color:var(--text)">Workers</div>
+      <div id="pay-workers">
+        <div class="form-grid pay-worker-row" style="margin-bottom:10px"><div><input type="text" placeholder="Worker name e.g. James R." class="w-name" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:9px;font-family:Epilogue,sans-serif;font-size:14px;background:var(--bg);outline:none"/></div><div><input type="number" placeholder="Hours e.g. 44" class="w-hours" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:9px;font-family:Epilogue,sans-serif;font-size:14px;background:var(--bg);outline:none"/></div></div>
+        <div class="form-grid pay-worker-row" style="margin-bottom:10px"><div><input type="text" placeholder="Worker name e.g. Maria S." class="w-name" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:9px;font-family:Epilogue,sans-serif;font-size:14px;background:var(--bg);outline:none"/></div><div><input type="number" placeholder="Hours e.g. 38" class="w-hours" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:9px;font-family:Epilogue,sans-serif;font-size:14px;background:var(--bg);outline:none"/></div></div>
+        <div class="form-grid pay-worker-row" style="margin-bottom:10px"><div><input type="text" placeholder="Worker name e.g. Tom W." class="w-name" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:9px;font-family:Epilogue,sans-serif;font-size:14px;background:var(--bg);outline:none"/></div><div><input type="number" placeholder="Hours e.g. 42" class="w-hours" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:9px;font-family:Epilogue,sans-serif;font-size:14px;background:var(--bg);outline:none"/></div></div>
+      </div>
+      <button class="generate-btn" onclick="generatePayroll()">Calculate Payroll</button>
+    </div>
+    <div class="result-box" id="pay-result">
+      <div class="result-header"><div><div class="result-title" id="pay-title"></div><div class="result-sub" id="pay-sub"></div></div><div class="result-badge">Payroll Summary</div></div>
+      <div class="metrics-row" id="pay-metrics"></div>
+      <div class="result-section"><div class="result-section-title">Worker Breakdown</div><table class="result-table"><thead><tr><th>Worker</th><th>Regular Hrs</th><th>OT Hrs</th><th>Total Pay</th></tr></thead><tbody id="pay-table"></tbody></table></div>
+      <div class="info-note">✓ In the live system, this summary generates automatically each week and lands in your inbox every Monday morning.</div>
+    </div>
+    <div class="demo-cta" id="pay-cta">
+      <h3>Want this running for your team?</h3>
+      <p>I will build the full system in your Google Workspace. Your team logs hours, payroll calculates itself.</p>
+      <div class="demo-cta-actions"><button class="btn-primary" onclick="openReq('Attendance + Payroll')">Send a Requirement</button><a href="https://cal.com/vikram-cal/30min" target="_blank" class="btn-ghost">Book a Call</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCHEDULE DEMO -->
+<div class="page" id="page-schedule">
+  <div class="demo-page-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Back to all demos</button>
+    <div class="demo-page-header">
+      <div class="demo-page-icon">📋</div>
+      <h1>Build this week's job schedule</h1>
+      <p>Enter your workers and jobs. The system assigns and formats a clean weekly schedule — no whiteboard, no individual messages.</p>
+    </div>
+    <div class="meta-pills">
+      <span class="meta-pill">Google Sheets + Apps Script</span>
+      <span class="meta-pill">Auto-assigns workers to jobs</span>
+      <span class="meta-pill">0 ongoing software cost</span>
+    </div>
+    <div class="demo-form">
+      <div class="form-row"><label>Business Name</label><input type="text" id="sch-biz" placeholder="e.g. Greenfield Landscaping"/></div>
+      <div class="form-row"><label>Workers (comma separated)</label><input type="text" id="sch-workers" placeholder="e.g. James, Maria, Tom, Sarah"/></div>
+      <div class="form-row"><label>Jobs this week (one per line — Day — Location/Task)</label><textarea id="sch-jobs" placeholder="Monday — 14 Oak Street, lawn mow&#10;Tuesday — Riverside Park, hedge trim&#10;Wednesday — 8 Pine Ave, full cleanup&#10;Thursday — CBD Office Block, maintenance&#10;Friday — 22 Hill Road, garden design"></textarea></div>
+      <button class="generate-btn" onclick="generateSchedule()">Generate Schedule</button>
+    </div>
+    <div class="result-box" id="sch-result">
+      <div class="result-header"><div><div class="result-title" id="sch-title"></div><div class="result-sub">Weekly Job Schedule</div></div><div class="result-badge">Schedule</div></div>
+      <div class="result-section"><div class="result-section-title">This Week's Assignments</div><div id="sch-board"></div></div>
+      <div class="info-note">✓ In the live system, each worker receives their schedule by email every Sunday evening.</div>
+    </div>
+    <div class="demo-cta" id="sch-cta">
+      <h3>Want scheduling handled automatically?</h3>
+      <p>You update one sheet, your team gets their schedule. No individual messages, no WhatsApp back and forth.</p>
+      <div class="demo-cta-actions"><button class="btn-primary" onclick="openReq('Job Scheduling')">Send a Requirement</button><a href="https://cal.com/vikram-cal/30min" target="_blank" class="btn-ghost">Book a Call</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- INVOICE DEMO -->
+<div class="page" id="page-invoice">
+  <div class="demo-page-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Back to all demos</button>
+    <div class="demo-page-header">
+      <div class="demo-page-icon">📄</div>
+      <h1>Turn this quote into an invoice</h1>
+      <p>Enter the job details. Get a formatted invoice instantly, plus an automatic follow up schedule that runs until the client pays.</p>
+    </div>
+    <div class="meta-pills">
+      <span class="meta-pill">Google Sheets + Apps Script</span>
+      <span class="meta-pill">Auto follow up until paid</span>
+      <span class="meta-pill">0 ongoing software cost</span>
+    </div>
+    <div class="demo-form">
+      <div class="form-grid">
+        <div class="form-row"><label>Your Business Name</label><input type="text" id="inv-biz" placeholder="e.g. Apex Cleaning"/></div>
+        <div class="form-row"><label>Client Name</label><input type="text" id="inv-client" placeholder="e.g. Horizon Properties"/></div>
+      </div>
+      <div class="form-row"><label>Service Description</label><input type="text" id="inv-service" placeholder="e.g. Commercial office cleaning — April 2026"/></div>
+      <div class="form-grid">
+        <div class="form-row"><label>Amount ($)</label><input type="number" id="inv-amount" placeholder="e.g. 1200"/></div>
+        <div class="form-row"><label>Payment Terms</label><select id="inv-due"><option value="7">Net 7</option><option value="14">Net 14</option><option value="30" selected>Net 30</option></select></div>
+      </div>
+      <div class="form-row"><label>Client Email</label><input type="email" id="inv-email" placeholder="client@example.com"/><div class="form-hint">Optional — shows where the invoice would be delivered.</div></div>
+      <button class="generate-btn" onclick="generateInvoice()">Generate Invoice</button>
+    </div>
+    <div class="invoice-doc" id="inv-result">
+      <div class="invoice-top">
+        <div><div class="invoice-brand" id="inv-biz-name"></div><div style="font-size:12px;color:var(--muted);margin-top:4px">Automation Consultant</div></div>
+        <div class="invoice-meta"><div class="invoice-num" id="inv-num"></div><div class="invoice-date" id="inv-dates"></div><div class="invoice-status">Awaiting Payment</div></div>
+      </div>
+      <div class="invoice-parties"><div class="party"><h5>From</h5><p id="inv-from"></p></div><div class="party"><h5>Bill To</h5><p id="inv-to"></p></div></div>
+      <table class="result-table"><thead><tr><th>Description</th><th>Amount</th></tr></thead><tbody id="inv-table"></tbody></table>
+      <div class="invoice-total-row"><div class="invoice-total-box"><div class="invoice-total-label">Total Due</div><div class="invoice-total-amount" id="inv-total"></div></div></div>
+      <div style="margin-top:28px"><div class="result-section-title">Automatic Follow Up Schedule</div><div id="inv-followups"></div></div>
+      <div class="info-note" style="margin-top:20px">✓ In the live system, the invoice and all follow ups send automatically. The sequence stops the moment payment is marked received.</div>
+    </div>
+    <div class="demo-cta" id="inv-cta">
+      <h3>Want invoicing and follow ups on autopilot?</h3>
+      <p>No more chasing. The system sends, reminds, and stops when paid — without you touching anything.</p>
+      <div class="demo-cta-actions"><button class="btn-primary" onclick="openReq('Quote to Invoice')">Send a Requirement</button><a href="https://cal.com/vikram-cal/30min" target="_blank" class="btn-ghost">Book a Call</a></div>
+    </div>
+  </div>
+  </div>
+  
+<!-- EXPENSE DEMO -->
+<div class="page" id="page-expense">
+  <div class="demo-page-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Back to all demos</button>
+    <div class="demo-page-header">
+      <div class="demo-page-icon">💰</div>
+      <h1>See what each job actually costs</h1>
+      <p>Enter job revenue and costs. See profit margin per job instantly — no formulas, no manual calculation.</p>
+    </div>
+    <div class="meta-pills">
+      <span class="meta-pill">Google Sheets + Apps Script</span>
+      <span class="meta-pill">Per-job profit breakdown</span>
+      <span class="meta-pill">0 ongoing software cost</span>
+    </div>
+    <div class="demo-form">
+      <div class="form-row"><label>Business Name</label><input type="text" id="exp-biz" placeholder="e.g. Clearview Window Cleaning"/></div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:12px">Job Details</div>
+      <div id="exp-jobs">
+        <div class="exp-job-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px">
+          <div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><label>Job Name</label><input type="text" class="ej-name" placeholder="e.g. CBD Office Block"/></div><div class="form-row" style="margin-bottom:0"><label>Revenue ($)</label><input type="number" class="ej-rev" placeholder="e.g. 850"/></div></div>
+          <div class="form-grid"><div class="form-row" style="margin-bottom:0"><label>Labour Cost ($)</label><input type="number" class="ej-labour" placeholder="e.g. 320"/></div><div class="form-row" style="margin-bottom:0"><label>Materials + Fuel ($)</label><input type="number" class="ej-mat" placeholder="e.g. 90"/></div></div>
+        </div>
+        <div class="exp-job-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px">
+          <div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><input type="text" class="ej-name" placeholder="e.g. Riverside Apartments"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-rev" placeholder="e.g. 1100"/></div></div>
+          <div class="form-grid"><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-labour" placeholder="e.g. 420"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-mat" placeholder="e.g. 60"/></div></div>
+        </div>
+        <div class="exp-job-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px">
+          <div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><input type="text" class="ej-name" placeholder="e.g. Greenfield Park"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-rev" placeholder="e.g. 650"/></div></div>
+          <div class="form-grid"><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-labour" placeholder="e.g. 240"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-mat" placeholder="e.g. 45"/></div></div>
+        </div>
+      </div>
+      <button class="generate-btn" onclick="generateExpense()" style="margin-top:20px">Calculate Job Profitability</button>
+    </div>
+    <div class="result-box" id="exp-result">
+      <div class="result-header"><div><div class="result-title" id="exp-title"></div><div class="result-sub">Job Cost and Profit Analysis</div></div><div class="result-badge">Expense Report</div></div>
+      <div class="metrics-row" id="exp-metrics"></div>
+      <div class="result-section"><div class="result-section-title">Per Job Breakdown</div><table class="result-table"><thead><tr><th>Job</th><th>Revenue</th><th>Total Cost</th><th>Profit</th><th>Margin</th></tr></thead><tbody id="exp-table"></tbody></table></div>
+      <div class="info-note">✓ In the live system, every job logs costs as your team works. Profit is visible in real time without anyone updating a spreadsheet.</div>
+    </div>
+    <div class="demo-cta" id="exp-cta">
+      <h3>Want to see profit on every job without the manual work?</h3>
+      <p>Your team logs costs as they go. You see what each job made without touching a formula.</p>
+      <div class="demo-cta-actions"><button class="btn-primary" onclick="openReq('Expense Tracking per Job')">Send a Requirement</button><a href="https://cal.com/vikram-cal/30min" target="_blank" class="btn-ghost">Book a Call</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- BILLING DEMO -->
+<div class="page" id="page-billing">
+  <div class="demo-page-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Back to all demos</button>
+    <div class="demo-page-header">
+      <div class="demo-page-icon">🔁</div>
+      <h1>Bill my regular clients on schedule</h1>
+      <p>Enter your recurring clients. See a billing schedule and the annual value of your recurring work — invoices go out automatically every cycle.</p>
+    </div>
+    <div class="meta-pills">
+      <span class="meta-pill">Google Sheets + Apps Script</span>
+      <span class="meta-pill">Weekly or monthly billing</span>
+      <span class="meta-pill">0 ongoing software cost</span>
+    </div>
+    <div class="demo-form">
+      <div class="form-row"><label>Business Name</label><input type="text" id="bil-biz" placeholder="e.g. ProClean Services"/></div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:12px">Client Details</div>
+      <div id="bil-clients">
+        <div class="bil-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px">
+          <div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><label>Client Name</label><input type="text" class="bc-name" placeholder="e.g. Horizon Properties"/></div><div class="form-row" style="margin-bottom:0"><label>Amount ($)</label><input type="number" class="bc-amount" placeholder="e.g. 800"/></div></div>
+          <div class="form-row" style="margin-bottom:0"><label>Billing Frequency</label><select class="bc-freq"><option>Weekly</option><option selected>Monthly</option></select></div>
+        </div>
+        <div class="bil-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px">
+          <div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><input type="text" class="bc-name" placeholder="e.g. Riverside Gym"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="bc-amount" placeholder="e.g. 1400"/></div></div>
+          <div class="form-row" style="margin-bottom:0"><select class="bc-freq"><option>Weekly</option><option selected>Monthly</option></select></div>
+        </div>
+        <div class="bil-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px">
+          <div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><input type="text" class="bc-name" placeholder="e.g. City Council Block"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="bc-amount" placeholder="e.g. 350"/></div></div>
+          <div class="form-row" style="margin-bottom:0"><select class="bc-freq"><option selected>Weekly</option><option>Monthly</option></select></div>
+        </div>
+      </div>
+      <button class="generate-btn" onclick="generateBilling()" style="margin-top:20px">Generate Billing Schedule</button>
+    </div>
+    <div class="result-box" id="bil-result">
+      <div class="result-header"><div><div class="result-title" id="bil-title"></div><div class="result-sub">Recurring Billing Schedule</div></div><div class="result-badge">Billing Plan</div></div>
+      <div class="metrics-row" id="bil-metrics"></div>
+      <div class="result-section"><div class="result-section-title">Client Schedule</div><table class="result-table"><thead><tr><th>Client</th><th>Amount</th><th>Frequency</th><th>Next Invoice</th><th>Annual Value</th></tr></thead><tbody id="bil-table"></tbody></table></div>
+      <div class="info-note">✓ In the live system, invoices go out on schedule automatically. Follow ups run until each client pays. You get notified when payment is confirmed.</div>
+    </div>
+    <div class="demo-cta" id="bil-cta">
+      <h3>Want billing to run itself?</h3>
+      <p>Every recurring client invoiced on time, every cycle, without you logging in to send anything.</p>
+      <div class="demo-cta-actions"><button class="btn-primary" onclick="openReq('Recurring Client Billing')">Send a Requirement</button><a href="https://cal.com/vikram-cal/30min" target="_blank" class="btn-ghost">Book a Call</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- REPORT DEMO -->
+<div class="page" id="page-report">
+  <div class="demo-page-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Back to all demos</button>
+    <div class="demo-page-header">
+      <div class="demo-page-icon">📊</div>
+      <h1>Get my weekly business summary</h1>
+      <p>Enter your numbers. Get a formatted report with key metrics and a written performance summary — the kind that takes an hour manually, done in seconds.</p>
+    </div>
+    <div class="meta-pills">
+      <span class="meta-pill">Google Sheets + Apps Script</span>
+      <span class="meta-pill">Written summary included</span>
+      <span class="meta-pill">0 ongoing software cost</span>
+    </div>
+    <div class="demo-form">
+      <div class="form-grid">
+        <div class="form-row"><label>Business Name</label><input type="text" id="rep-biz" placeholder="e.g. Apex Cleaning"/></div>
+        <div class="form-row"><label>Report Period</label><select id="rep-period"><option>Weekly</option><option>Monthly</option></select></div>
+      </div>
+      <div class="form-grid">
+        <div class="form-row"><label>Jobs Completed</label><input type="number" id="rep-jobs" placeholder="e.g. 24"/></div>
+        <div class="form-row"><label>Revenue ($)</label><input type="number" id="rep-rev" placeholder="e.g. 4800"/></div>
+      </div>
+      <div class="form-grid">
+        <div class="form-row"><label>Total Expenses ($)</label><input type="number" id="rep-exp" placeholder="e.g. 1400"/></div>
+        <div class="form-row"><label>Team Size</label><input type="number" id="rep-team" placeholder="e.g. 6"/></div>
+      </div>
+      <div class="form-row"><label>Any highlights or issues this period? (optional)</label><input type="text" id="rep-notes" placeholder="e.g. Two new clients onboarded, one complaint resolved"/></div>
+      <button class="generate-btn" onclick="generateReport()">Generate Report</button>
+    </div>
+    <div class="result-box" id="rep-result">
+      <div class="result-header"><div><div class="result-title" id="rep-title"></div><div class="result-sub" id="rep-sub"></div></div><div class="result-badge" id="rep-badge"></div></div>
+      <div class="metrics-row" id="rep-metrics"></div>
+      <div class="result-section"><div class="result-section-title">Performance Summary</div><div class="result-narrative" id="rep-narrative"></div></div>
+      <div class="result-section"><div class="result-section-title">Breakdown</div><table class="result-table"><thead><tr><th>Metric</th><th>Value</th><th>Context</th></tr></thead><tbody id="rep-table"></tbody></table></div>
+      <div class="info-note">✓ In the live system, this report is generated and sent to your inbox automatically every Monday morning.</div>
+    </div>
+    <div class="demo-cta" id="rep-cta">
+      <h3>Want this report waiting in your inbox every week?</h3>
+      <p>No manual entry, no formatting. Your numbers summarised and delivered automatically.</p>
+      <div class="demo-cta-actions"><button class="btn-primary" onclick="openReq('Automated Report Generator')">Send a Requirement</button><a href="https://cal.com/vikram-cal/30min" target="_blank" class="btn-ghost">Book a Call</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzIqavT0NRCCOx5-gROXkaOLG0N58LP0gHNJXUbC7OQcBdtXndLkMWguTKZ8PLcTUzs/exec';
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function showDemo(id) {
+  showPage(id);
+  logDemoUse(id);
+}
+
+function openReq(source) {
+  document.getElementById('req-demo-source').value = source;
+  document.getElementById('req-form-wrap').style.display = 'block';
+  document.getElementById('req-success').classList.remove('show');
+  document.getElementById('req-submit-btn').disabled = false;
+  document.getElementById('req-submit-btn').textContent = 'Send Requirement';
+  document.getElementById('req-overlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeReq() {
+  document.getElementById('req-overlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+function closeReqIfOutside(e) {
+  if (e.target === document.getElementById('req-overlay')) closeReq();
+}
+
+async function submitRequirement() {
+  const name = document.getElementById('req-name').value.trim();
+  const email = document.getElementById('req-email').value.trim();
+  const detail = document.getElementById('req-detail').value.trim();
+  const demo = document.getElementById('req-demo-source').value;
+  if (!email) { alert('Please enter your email so I can get back to you.'); return; }
+  if (!detail) { alert('Please describe what you need automated.'); return; }
+  const btn = document.getElementById('req-submit-btn');
+  btn.disabled = true; btn.textContent = 'Sending...';
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({type:'requirement', name, email, requirement:detail, demo})
+    });
+  } catch(e) {}
+  document.getElementById('req-form-wrap').style.display = 'none';
+  document.getElementById('req-success').classList.add('show');
+}
+
+async function logDemoUse(demo) {
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({type:'demo_use', demo})
+    });
+  } catch(e) {}
+}
+
+const $ = id => document.getElementById(id);
+const fmtM = n => '$' + Number(n).toLocaleString('en-US',{minimumFractionDigits:0});
+const todayStr = () => new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+const addDays = (n) => { const d=new Date(); d.setDate(d.getDate()+n); return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); };
+
+function generatePayroll() {
+  const biz = $('pay-biz').value||'Your Business';
+  const period = $('pay-period').value;
+  const otThresh = parseFloat($('pay-ot').value)||40;
+  const rate = parseFloat($('pay-rate').value)||0;
+  const rows = document.querySelectorAll('.pay-worker-row');
+  let workers=[];
+  rows.forEach(r=>{
+    const name=r.querySelector('.w-name').value.trim();
+    const hours=parseFloat(r.querySelector('.w-hours').value)||0;
+    if(name&&hours) workers.push({name,hours});
+  });
+  if(!workers.length||!rate){alert('Please enter at least one worker and the hourly rate.');return;}
+  let totalPay=0,totalOT=0,tableHTML='';
+  workers.forEach(w=>{
+    const reg=Math.min(w.hours,otThresh);
+    const ot=Math.max(0,w.hours-otThresh);
+    const pay=(reg*rate)+(ot*rate*1.5);
+    totalPay+=pay; totalOT+=ot;
+    tableHTML+=`<tr><td>${w.name}</td><td>${reg}h</td><td>${ot>0?ot+'h':'—'}</td><td><strong>${fmtM(pay)}</strong></td></tr>`;
+  });
+  $('pay-title').textContent=biz+' — Payroll';
+  $('pay-sub').textContent=period+' · Generated '+todayStr();
+  $('pay-metrics').innerHTML=`<div class="metric-card"><div class="metric-val">${workers.length}</div><div class="metric-lbl">Workers</div></div><div class="metric-card"><div class="metric-val">${fmtM(totalPay)}</div><div class="metric-lbl">Total Payroll</div></div><div class="metric-card"><div class="metric-val">${totalOT}h</div><div class="metric-lbl">Overtime Hours</div></div>`;
+  $('pay-table').innerHTML=tableHTML;
+  $('pay-result').classList.add('show');
+  $('pay-cta').classList.add('show');
+  $('pay-result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function generateSchedule() {
+  const biz=$('sch-biz').value||'Your Business';
+  const workersRaw=$('sch-workers').value;
+  const jobsRaw=$('sch-jobs').value;
+  if(!workersRaw||!jobsRaw){alert('Please enter workers and jobs.');return;}
+  const workers=workersRaw.split(',').map(w=>w.trim()).filter(Boolean);
+  const jobs=jobsRaw.split('\n').map(j=>j.trim()).filter(Boolean);
+  let html='';
+  jobs.forEach((job,i)=>{
+    const assigned=workers[i%workers.length];
+    const parts=job.split('—');
+    const day=parts[0]?parts[0].trim():'Job '+(i+1);
+    const desc=parts[1]?parts[1].trim():job;
+    html+=`<div class="schedule-row"><span class="schedule-day-badge">${day}</span><span class="schedule-job">${desc}</span><span class="schedule-worker-name">${assigned}</span></div>`;
+  });
+  $('sch-title').textContent=biz+' — Week Schedule';
+  $('sch-board').innerHTML=html;
+  $('sch-result').classList.add('show');
+  $('sch-cta').classList.add('show');
+  $('sch-result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function generateInvoice() {
+  const biz=$('inv-biz').value||'Your Business';
+  const client=$('inv-client').value||'Client';
+  const service=$('inv-service').value||'Professional Services';
+  const amount=parseFloat($('inv-amount').value)||0;
+  const due=parseInt($('inv-due').value);
+  const email=$('inv-email').value||'client@example.com';
+  if(!amount){alert('Please enter the invoice amount.');return;}
+  const invNum='INV-'+String(Math.floor(Math.random()*9000)+1000);
+  $('inv-biz-name').innerHTML=biz+'<span>.</span>';
+  $('inv-num').textContent=invNum;
+  $('inv-dates').textContent='Issued: '+todayStr()+' · Due: '+addDays(due);
+  $('inv-from').textContent=biz;
+  $('inv-to').innerHTML=client+'<br>'+email;
+  $('inv-table').innerHTML=`<tr><td>${service}</td><td>${fmtM(amount)}</td></tr>`;
+  $('inv-total').textContent=fmtM(amount);
+  const fups=[
+    {day:0,label:'Invoice sent to '+client,s:'done'},
+    {day:Math.round(due*0.5),label:'Friendly reminder — payment due in '+Math.round(due*0.5)+' days',s:'pending'},
+    {day:due,label:'Due date reminder sent',s:'future'},
+    {day:due+3,label:'Overdue notice (if unpaid)',s:'future'},
+    {day:due+7,label:'Final follow up (if unpaid)',s:'future'},
+  ];
+  $('inv-followups').innerHTML=fups.map(f=>`<div class="followup-item"><div class="f-dot ${f.s}"></div><div class="f-text">${f.label}</div><div class="f-day">Day ${f.day}</div></div>`).join('');
+  $('inv-result').classList.add('show');
+  $('inv-cta').classList.add('show');
+  $('inv-result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function generateExpense() {
+  const biz=$('exp-biz').value||'Your Business';
+  const jobRows=document.querySelectorAll('.exp-job-row');
+  let jobs=[];
+  jobRows.forEach(r=>{
+    const name=r.querySelector('.ej-name').value.trim();
+    const rev=parseFloat(r.querySelector('.ej-rev').value)||0;
+    const labour=parseFloat(r.querySelector('.ej-labour').value)||0;
+    const mat=parseFloat(r.querySelector('.ej-mat').value)||0;
+    if(name&&rev) jobs.push({name,rev,labour,mat});
+  });
+  if(!jobs.length){alert('Please enter at least one job.');return;}
+  let totalRev=0,totalCost=0,totalProfit=0,tableHTML='';
+  jobs.forEach(j=>{
+    const cost=j.labour+j.mat;
+    const profit=j.rev-cost;
+    const margin=j.rev>0?((profit/j.rev)*100).toFixed(1):0;
+    totalRev+=j.rev; totalCost+=cost; totalProfit+=profit;
+    const col=profit>=0?'var(--accent)':'#c0392b';
+    tableHTML+=`<tr><td>${j.name}</td><td>${fmtM(j.rev)}</td><td>${fmtM(cost)}</td><td style="color:${col};font-weight:600">${fmtM(profit)}</td><td>${margin}%</td></tr>`;
+  });
+  const avgM=totalRev>0?((totalProfit/totalRev)*100).toFixed(1):0;
+  $('exp-title').textContent=biz+' — Job Profitability';
+  $('exp-metrics').innerHTML=`<div class="metric-card"><div class="metric-val">${fmtM(totalRev)}</div><div class="metric-lbl">Total Revenue</div></div><div class="metric-card"><div class="metric-val">${fmtM(totalProfit)}</div><div class="metric-lbl">Total Profit</div></div><div class="metric-card"><div class="metric-val">${avgM}%</div><div class="metric-lbl">Avg Margin</div></div>`;
+  $('exp-table').innerHTML=tableHTML;
+  $('exp-result').classList.add('show');
+  $('exp-cta').classList.add('show');
+  $('exp-result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function generateBilling() {
+  const biz=$('bil-biz').value||'Your Business';
+  const rows=document.querySelectorAll('.bil-row');
+  let clients=[];
+  rows.forEach(r=>{
+    const name=r.querySelector('.bc-name').value.trim();
+    const amount=parseFloat(r.querySelector('.bc-amount').value)||0;
+    const freq=r.querySelector('.bc-freq').value;
+    if(name&&amount) clients.push({name,amount,freq});
+  });
+  if(!clients.length){alert('Please enter at least one client.');return;}
+  let totalM=0,totalA=0,tableHTML='';
+  clients.forEach(c=>{
+    const annual=c.freq==='Weekly'?c.amount*52:c.amount*12;
+    const monthly=c.freq==='Weekly'?c.amount*4.33:c.amount;
+    const next=addDays(c.freq==='Weekly'?7:30);
+    totalA+=annual; totalM+=monthly;
+    tableHTML+=`<tr><td>${c.name}</td><td>${fmtM(c.amount)}</td><td>${c.freq}</td><td>${next}</td><td>${fmtM(annual)}</td></tr>`;
+  });
+  $('bil-title').textContent=biz+' — Billing Schedule';
+  $('bil-metrics').innerHTML=`<div class="metric-card"><div class="metric-val">${clients.length}</div><div class="metric-lbl">Active Clients</div></div><div class="metric-card"><div class="metric-val">${fmtM(Math.round(totalM))}</div><div class="metric-lbl">Monthly Revenue</div></div><div class="metric-card"><div class="metric-val">${fmtM(totalA)}</div><div class="metric-lbl">Annual Value</div></div>`;
+  $('bil-table').innerHTML=tableHTML;
+  $('bil-result').classList.add('show');
+  $('bil-cta').classList.add('show');
+  $('bil-result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function generateReport() {
+  const biz=$('rep-biz').value||'Your Business';
+  const period=$('rep-period').value;
+  const jobs=parseInt($('rep-jobs').value)||0;
+  const rev=parseFloat($('rep-rev').value)||0;
+  const exp=parseFloat($('rep-exp').value)||0;
+  const team=parseInt($('rep-team').value)||0;
+  const notes=$('rep-notes').value.trim();
+  if(!jobs||!rev){alert('Please enter jobs completed and revenue.');return;}
+  const profit=rev-exp;
+  const margin=((profit/rev)*100).toFixed(1);
+  const perJob=(rev/jobs).toFixed(0);
+  const payrollRatio=exp>0?((exp/rev)*100).toFixed(1):0;
+  const perfLevel=margin>40?'strong':margin>25?'solid':'tight';
+  const jobRate=jobs>0&&team>0?(jobs/team).toFixed(1):0;
+  const notesLine=notes?` Notable this period: ${notes}.`:'';
+  const p1=`${biz} completed ${jobs} jobs ${period==='Weekly'?'this week':'this month'}, generating ${fmtM(rev)} in revenue against ${fmtM(exp)} in expenses — a net profit of ${fmtM(profit)} and a ${margin}% margin. That is a ${perfLevel} result for a service business of this size.${notesLine}`;
+  const p2=team>0?`With ${team} team members averaging ${jobRate} jobs each, the operation is running at ${fmtM(perJob)} revenue per job. The cost-to-revenue ratio sits at ${payrollRatio}%, which ${parseFloat(payrollRatio)<40?'is within a healthy range for a labour-intensive service business':'is worth monitoring — keeping this below 40% protects margins as you scale'}. ${profit>0?'The business is covering its costs and generating a return this period.':'Revenue is not covering expenses this period — reviewing job pricing or cost controls would be the immediate priority.'}`:`At ${fmtM(perJob)} per job, the current pricing is ${parseFloat(perJob)>150?'supporting healthy margins':'worth reviewing against cost of delivery'}. ${profit>0?'The business closed the period in profit.':'Expenses exceeded revenue this period.'}`;
+  $('rep-title').textContent=biz+' — '+period+' Report';
+  $('rep-sub').textContent='Generated '+todayStr();
+  $('rep-badge').textContent=period;
+  $('rep-metrics').innerHTML=`<div class="metric-card"><div class="metric-val">${jobs}</div><div class="metric-lbl">Jobs Completed</div></div><div class="metric-card"><div class="metric-val">${fmtM(profit)}</div><div class="metric-lbl">Net Profit</div></div><div class="metric-card"><div class="metric-val">${margin}%</div><div class="metric-lbl">Profit Margin</div></div>`;
+  $('rep-narrative').innerHTML=`<p>${p1}</p><p>${p2}</p>`;
+  $('rep-table').innerHTML=`<tr><td>Total Revenue</td><td>${fmtM(rev)}</td><td>Across ${jobs} jobs</td></tr><tr><td>Total Expenses</td><td>${fmtM(exp)}</td><td>—</td></tr><tr><td>Net Profit</td><td><strong>${fmtM(profit)}</strong></td><td>${margin}% margin</td></tr><tr><td>Revenue per Job</td><td>${fmtM(perJob)}</td><td>Average</td></tr>${team?`<tr><td>Jobs per Team Member</td><td>${jobRate}</td><td>${team} people</td></tr>`:''}`;
+  $('rep-result').classList.add('show');
+  $('rep-cta').classList.add('show');
+  $('rep-result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// Scroll reveal
+const revealEls=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}
+  });
+},{threshold:0.1});
+revealEls.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
