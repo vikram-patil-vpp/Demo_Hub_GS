@@ -23,208 +23,71 @@
 }
 
 html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Epilogue', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  font-size: 15px;
-  line-height: 1.65;
-  overflow-x: hidden;
-}
-
-body::before {
-  content: '';
-  position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-size: 256px;
-}
+body { font-family:'Epilogue',sans-serif; background:var(--bg); color:var(--text); font-size:15px; line-height:1.65; overflow-x:hidden; }
+body::before { content:''; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.04; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); background-size:256px; }
 
 /* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  height: var(--nav-h);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 48px;
-  background: rgba(247,244,239,0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px; font-weight: 600;
-  color: var(--text); cursor: pointer;
-}
-.nav-logo span { color: var(--accent2); }
-.nav-right { display: flex; align-items: center; gap: 8px; }
-.nav-pill {
-  font-size: 13px; font-weight: 500; color: var(--muted);
-  padding: 7px 16px; border-radius: 100px;
-  border: none; background: none; cursor: pointer;
-  font-family: 'Epilogue', sans-serif;
-  transition: color 0.2s, background 0.2s; text-decoration: none;
-}
-.nav-pill:hover { color: var(--text); background: var(--surface2); }
-.nav-btn {
-  font-size: 13px; font-weight: 600; color: #fff;
-  background: var(--accent); padding: 8px 20px;
-  border-radius: 100px; border: none; cursor: pointer;
-  font-family: 'Epilogue', sans-serif;
-  transition: opacity 0.2s, transform 0.2s; text-decoration: none;
-}
-.nav-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+nav { position:fixed; top:0; left:0; right:0; z-index:200; height:var(--nav-h); display:flex; align-items:center; justify-content:space-between; padding:0 48px; background:rgba(247,244,239,0.92); backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
+.nav-logo { font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:var(--text); cursor:pointer; }
+.nav-logo span { color:var(--accent2); }
+.nav-right { display:flex; align-items:center; gap:8px; }
+.nav-pill { font-size:13px; font-weight:500; color:var(--muted); padding:7px 16px; border-radius:100px; border:none; background:none; cursor:pointer; font-family:'Epilogue',sans-serif; transition:color 0.2s,background 0.2s; text-decoration:none; }
+.nav-pill:hover { color:var(--text); background:var(--surface2); }
+.nav-btn { font-size:13px; font-weight:600; color:#fff; background:var(--accent); padding:8px 20px; border-radius:100px; border:none; cursor:pointer; font-family:'Epilogue',sans-serif; transition:opacity 0.2s,transform 0.2s; text-decoration:none; }
+.nav-btn:hover { opacity:0.88; transform:translateY(-1px); }
 
 /* PAGES */
-.page { display: none; min-height: 100vh; }
-.page.active { display: block; }
+.page { display:none; min-height:100vh; }
+.page.active { display:block; }
 
 /* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column; justify-content: center;
-  padding: calc(var(--nav-h) + 72px) 48px 80px;
-  max-width: 1100px; margin: 0 auto;
-  position: relative; z-index: 1;
-}
-.hero::before {
-  content: '';
-  position: fixed;
-  width: 600px; height: 600px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(184,148,58,0.1) 0%, transparent 70%);
-  top: 5%; right: -100px; pointer-events: none;
-  animation: float 9s ease-in-out infinite;
-}
+.hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:calc(var(--nav-h) + 72px) 48px 80px; max-width:1100px; margin:0 auto; position:relative; z-index:1; }
+.hero::before { content:''; position:fixed; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle,rgba(184,148,58,0.1) 0%,transparent 70%); top:5%; right:-100px; pointer-events:none; animation:float 9s ease-in-out infinite; }
 @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
-
-.hero-tag {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 11px; font-weight: 600; letter-spacing: 1.2px;
-  text-transform: uppercase; color: var(--accent);
-  margin-bottom: 28px;
-  opacity: 0; animation: reveal 0.7s 0.1s forwards;
-}
+.hero-tag { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:600; letter-spacing:1.2px; text-transform:uppercase; color:var(--accent); margin-bottom:28px; opacity:0; animation:reveal 0.7s 0.1s forwards; }
 .hero-tag::before { content:''; width:24px; height:1.5px; background:var(--accent2); display:block; }
+.hero h1 { font-family:'Playfair Display',serif; font-size:clamp(40px,5.5vw,68px); line-height:1.1; letter-spacing:-1px; font-weight:600; max-width:760px; margin-bottom:24px; opacity:0; animation:reveal 0.8s 0.25s forwards; }
+.hero h1 em { font-style:italic; color:var(--accent2); }
+.hero-sub { font-size:17px; font-weight:300; color:var(--muted); max-width:500px; line-height:1.8; margin-bottom:44px; opacity:0; animation:reveal 0.8s 0.4s forwards; }
+.hero-actions { display:flex; align-items:center; gap:16px; flex-wrap:wrap; opacity:0; animation:reveal 0.8s 0.55s forwards; }
 
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(40px, 5.5vw, 68px);
-  line-height: 1.1; letter-spacing: -1px; font-weight: 600;
-  max-width: 760px; margin-bottom: 24px;
-  opacity: 0; animation: reveal 0.8s 0.25s forwards;
-}
-.hero h1 em { font-style: italic; color: var(--accent2); }
+.btn-primary { display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:#fff; padding:14px 28px; border-radius:100px; font-family:'Epilogue',sans-serif; font-size:14px; font-weight:600; text-decoration:none; border:none; cursor:pointer; transition:all 0.25s; box-shadow:0 4px 20px rgba(26,71,49,0.22); }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(26,71,49,0.28); }
+.btn-ghost { display:inline-flex; align-items:center; gap:8px; background:transparent; color:var(--text); padding:13px 24px; border-radius:100px; font-family:'Epilogue',sans-serif; font-size:14px; font-weight:500; text-decoration:none; border:1.5px solid var(--border); cursor:pointer; transition:all 0.25s; }
+.btn-ghost:hover { border-color:var(--accent2); color:var(--accent); transform:translateY(-2px); }
 
-.hero-sub {
-  font-size: 17px; font-weight: 300; color: var(--muted);
-  max-width: 500px; line-height: 1.8; margin-bottom: 44px;
-  opacity: 0; animation: reveal 0.8s 0.4s forwards;
-}
-
-.hero-actions {
-  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-  opacity: 0; animation: reveal 0.8s 0.55s forwards;
-}
-
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--accent); color: #fff;
-  padding: 14px 28px; border-radius: 100px;
-  font-family: 'Epilogue', sans-serif; font-size: 14px; font-weight: 600;
-  text-decoration: none; border: none; cursor: pointer;
-  transition: all 0.25s;
-  box-shadow: 0 4px 20px rgba(26,71,49,0.22);
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,71,49,0.28); }
-
-.btn-ghost {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: transparent; color: var(--text);
-  padding: 13px 24px; border-radius: 100px;
-  font-family: 'Epilogue', sans-serif; font-size: 14px; font-weight: 500;
-  text-decoration: none; border: 1.5px solid var(--border); cursor: pointer;
-  transition: all 0.25s;
-}
-.btn-ghost:hover { border-color: var(--accent2); color: var(--accent); transform: translateY(-2px); }
-
-.trust-bar {
-  display: flex; align-items: center; gap: 32px;
-  margin-top: 64px; flex-wrap: wrap;
-  opacity: 0; animation: reveal 0.8s 0.7s forwards;
-}
+.trust-bar { display:flex; align-items:center; gap:32px; margin-top:64px; flex-wrap:wrap; opacity:0; animation:reveal 0.8s 0.7s forwards; }
 .trust-divider { width:1px; height:32px; background:var(--border); }
-.trust-item { display: flex; flex-direction: column; }
+.trust-item { display:flex; flex-direction:column; }
 .trust-val { font-family:'Playfair Display',serif; font-size:26px; font-weight:600; color:var(--text); line-height:1; }
 .trust-label { font-size:11px; font-weight:500; color:var(--muted); text-transform:uppercase; letter-spacing:0.8px; margin-top:4px; }
 
 /* SECTION */
-.section { padding: 96px 48px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
-.section-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 11px; font-weight: 600; letter-spacing: 1.2px;
-  text-transform: uppercase; color: var(--accent2); margin-bottom: 14px;
-}
+.section { padding:96px 48px; max-width:1100px; margin:0 auto; position:relative; z-index:1; }
+.section-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:600; letter-spacing:1.2px; text-transform:uppercase; color:var(--accent2); margin-bottom:14px; }
 .section-eyebrow::before { content:''; width:20px; height:1.5px; background:var(--accent2); }
-.section-title {
-  font-family:'Playfair Display',serif;
-  font-size: clamp(28px,4vw,44px); font-weight:600;
-  letter-spacing:-0.5px; line-height:1.15; margin-bottom:14px;
-}
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(28px,4vw,44px); font-weight:600; letter-spacing:-0.5px; line-height:1.15; margin-bottom:14px; }
 .section-sub { font-size:16px; font-weight:300; color:var(--muted); max-width:480px; line-height:1.8; margin-bottom:52px; }
 
 /* DEMO CARDS */
 .demos-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-
-.demo-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px; padding: 30px 26px;
-  cursor: pointer; position: relative; overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-}
-.demo-card::before {
-  content:''; position:absolute; inset:0;
-  background: linear-gradient(135deg, transparent 40%, rgba(184,148,58,0.05) 100%);
-  opacity:0; transition:opacity 0.4s; pointer-events:none;
-}
+.demo-card { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:30px 26px; cursor:pointer; position:relative; overflow:hidden; transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s; }
+.demo-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,transparent 40%,rgba(184,148,58,0.05) 100%); opacity:0; transition:opacity 0.4s; pointer-events:none; }
 .demo-card:hover::before { opacity:1; }
 .demo-card:hover { transform:translateY(-6px); box-shadow:0 20px 48px var(--shadow); border-color:rgba(184,148,58,0.35); }
-.demo-card::after {
-  content:''; position:absolute; top:0; left:0;
-  width:3px; height:0;
-  background: linear-gradient(to bottom, var(--accent2), var(--accent));
-  border-radius:0 0 3px 3px; transition:height 0.35s ease;
-}
+.demo-card::after { content:''; position:absolute; top:0; left:0; width:3px; height:0; background:linear-gradient(to bottom,var(--accent2),var(--accent)); border-radius:0 0 3px 3px; transition:height 0.35s ease; }
 .demo-card:hover::after { height:100%; }
-
-.demo-icon-wrap {
-  width:50px; height:50px; background:var(--surface2);
-  border-radius:14px; display:flex; align-items:center; justify-content:center;
-  font-size:22px; margin-bottom:18px;
-  transition:background 0.3s, transform 0.3s;
-}
+.demo-icon-wrap { width:50px; height:50px; background:var(--surface2); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:18px; transition:background 0.3s,transform 0.3s; }
 .demo-card:hover .demo-icon-wrap { background:var(--accent-lt); transform:scale(1.08); }
-
 .demo-card-title { font-family:'Playfair Display',serif; font-size:17px; font-weight:600; margin-bottom:9px; line-height:1.25; }
 .demo-card-desc { font-size:13.5px; font-weight:300; color:var(--muted); line-height:1.65; margin-bottom:20px; }
-
 .demo-card-footer { display:flex; align-items:center; justify-content:space-between; }
 .demo-card-label { font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; }
-.demo-arrow {
-  width:32px; height:32px; border-radius:50%;
-  background:var(--surface2);
-  display:flex; align-items:center; justify-content:center;
-  font-size:14px; color:var(--muted);
-  transition:background 0.3s, color 0.3s, transform 0.3s; flex-shrink:0;
-}
+.demo-arrow { width:32px; height:32px; border-radius:50%; background:var(--surface2); display:flex; align-items:center; justify-content:center; font-size:14px; color:var(--muted); transition:background 0.3s,color 0.3s,transform 0.3s; flex-shrink:0; }
 .demo-card:hover .demo-arrow { background:var(--accent); color:#fff; transform:translateX(3px); }
 
 /* HOW IT WORKS */
-.how-grid {
-  display:grid; grid-template-columns:repeat(4,1fr);
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:20px; overflow:hidden;
-}
+.how-grid { display:grid; grid-template-columns:repeat(4,1fr); background:var(--surface); border:1px solid var(--border); border-radius:20px; overflow:hidden; }
 .how-step { padding:34px 26px; border-right:1px solid var(--border); transition:background 0.3s; }
 .how-step:last-child { border-right:none; }
 .how-step:hover { background:var(--surface2); }
@@ -234,79 +97,30 @@ nav {
 .how-desc { font-size:13px; font-weight:300; color:var(--muted); line-height:1.65; }
 
 /* ZERO COST BAND */
-.zero-band {
-  margin: 0 48px;
-  background: var(--accent); border-radius:24px;
-  padding: 56px 64px;
-  display:flex; align-items:center; justify-content:space-between;
-  gap:32px; flex-wrap:wrap; position:relative; overflow:hidden; z-index:1;
-}
-.zero-band::before {
-  content:''; position:absolute;
-  width:400px; height:400px; border-radius:50%;
-  background:rgba(184,148,58,0.1);
-  top:-100px; right:-80px; pointer-events:none;
-}
-.zero-band-text h2 {
-  font-family:'Playfair Display',serif;
-  font-size:clamp(22px,3vw,36px); color:#fff; font-weight:600;
-  letter-spacing:-0.3px; line-height:1.2; margin-bottom:12px;
-}
+.zero-band { margin:0 48px; background:var(--accent); border-radius:24px; padding:56px 64px; display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap; position:relative; overflow:hidden; z-index:1; }
+.zero-band::before { content:''; position:absolute; width:400px; height:400px; border-radius:50%; background:rgba(184,148,58,0.1); top:-100px; right:-80px; pointer-events:none; }
+.zero-band-text h2 { font-family:'Playfair Display',serif; font-size:clamp(22px,3vw,36px); color:#fff; font-weight:600; letter-spacing:-0.3px; line-height:1.2; margin-bottom:12px; }
 .zero-band-text p { font-size:15px; font-weight:300; color:rgba(255,255,255,0.75); max-width:420px; line-height:1.8; }
 .zero-band-actions { display:flex; gap:12px; flex-wrap:wrap; flex-shrink:0; }
-.btn-light {
-  display:inline-flex; align-items:center; gap:8px;
-  background:#fff; color:var(--accent);
-  padding:13px 26px; border-radius:100px;
-  font-family:'Epilogue',sans-serif; font-size:14px; font-weight:600;
-  text-decoration:none; border:none; cursor:pointer; transition:all 0.25s;
-}
+.btn-light { display:inline-flex; align-items:center; gap:8px; background:#fff; color:var(--accent); padding:13px 26px; border-radius:100px; font-family:'Epilogue',sans-serif; font-size:14px; font-weight:600; text-decoration:none; border:none; cursor:pointer; transition:all 0.25s; }
 .btn-light:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.15); }
-.btn-outline-light {
-  display:inline-flex; align-items:center; gap:8px;
-  background:transparent; color:rgba(255,255,255,0.9);
-  padding:12px 24px; border-radius:100px;
-  font-family:'Epilogue',sans-serif; font-size:14px; font-weight:500;
-  text-decoration:none; border:1.5px solid rgba(255,255,255,0.4); cursor:pointer;
-  transition:all 0.25s;
-}
+.btn-outline-light { display:inline-flex; align-items:center; gap:8px; background:transparent; color:rgba(255,255,255,0.9); padding:12px 24px; border-radius:100px; font-family:'Epilogue',sans-serif; font-size:14px; font-weight:500; text-decoration:none; border:1.5px solid rgba(255,255,255,0.4); cursor:pointer; transition:all 0.25s; }
 .btn-outline-light:hover { border-color:rgba(255,255,255,0.8); color:#fff; transform:translateY(-2px); }
 
 /* PILLARS */
 .pillars-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-.pillar {
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:18px; padding:30px;
-  display:flex; gap:20px;
-  transition:transform 0.25s, box-shadow 0.25s;
-}
+.pillar { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:30px; display:flex; gap:20px; transition:transform 0.25s,box-shadow 0.25s; }
 .pillar:hover { transform:translateY(-4px); box-shadow:0 16px 40px var(--shadow); }
-.pillar-num {
-  width:48px; height:48px; flex-shrink:0;
-  background:var(--surface2); border-radius:14px;
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Playfair Display',serif; font-size:20px; font-weight:600;
-  color:var(--accent2); transition:background 0.3s;
-}
+.pillar-num { width:48px; height:48px; flex-shrink:0; background:var(--surface2); border-radius:14px; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:20px; font-weight:600; color:var(--accent2); transition:background 0.3s; }
 .pillar:hover .pillar-num { background:var(--accent-lt); }
 .pillar-body h4 { font-size:15px; font-weight:600; margin-bottom:6px; }
 .pillar-body p { font-size:13.5px; font-weight:300; color:var(--muted); line-height:1.7; }
 
 /* FOOTER */
-footer {
-  border-top:1px solid var(--border);
-  padding:48px 48px 36px;
-  max-width:1100px; margin:80px auto 0;
-  position:relative; z-index:1;
-}
+footer { border-top:1px solid var(--border); padding:48px 48px 36px; max-width:1100px; margin:80px auto 0; position:relative; z-index:1; }
 .footer-inner { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px; }
 .footer-author { display:flex; align-items:center; gap:16px; }
-.author-avatar {
-  width:44px; height:44px; border-radius:50%;
-  background:linear-gradient(135deg,var(--accent2),var(--accent));
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Playfair Display',serif; font-size:18px; color:#fff; font-weight:600;
-}
+.author-avatar { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--accent2),var(--accent)); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:18px; color:#fff; font-weight:600; }
 .author-info h4 { font-size:14px; font-weight:600; }
 .author-info p { font-size:12.5px; color:var(--muted); }
 .footer-links { display:flex; gap:24px; align-items:center; }
@@ -315,151 +129,73 @@ footer {
 .footer-copy { margin-top:32px; padding-top:24px; border-top:1px solid var(--border); font-size:12px; color:var(--muted); text-align:center; }
 
 /* DEMO PAGE */
-.demo-page-wrap { padding: calc(var(--nav-h) + 48px) 48px 80px; max-width:860px; margin:0 auto; position:relative; z-index:1; }
-
-.back-btn {
-  display:inline-flex; align-items:center; gap:6px;
-  font-size:13px; color:var(--muted); cursor:pointer;
-  background:none; border:none; font-family:'Epilogue',sans-serif;
-  margin-bottom:36px; transition:color 0.2s; padding:0;
-}
+.demo-page-wrap { padding:calc(var(--nav-h) + 48px) 48px 80px; max-width:860px; margin:0 auto; position:relative; z-index:1; }
+.back-btn { display:inline-flex; align-items:center; gap:6px; font-size:13px; color:var(--muted); cursor:pointer; background:none; border:none; font-family:'Epilogue',sans-serif; margin-bottom:36px; transition:color 0.2s; padding:0; }
 .back-btn:hover { color:var(--accent); }
-
-.demo-page-icon {
-  width:56px; height:56px; background:var(--surface2);
-  border-radius:16px; display:flex; align-items:center; justify-content:center;
-  font-size:26px; margin-bottom:18px;
-}
+.demo-page-icon { width:56px; height:56px; background:var(--surface2); border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:26px; margin-bottom:18px; }
 .demo-page-header h1 { font-family:'Playfair Display',serif; font-size:clamp(24px,4vw,36px); font-weight:600; letter-spacing:-0.4px; margin-bottom:10px; }
 .demo-page-header p { font-size:15px; font-weight:300; color:var(--muted); max-width:540px; line-height:1.8; margin-bottom:28px; }
-
 .meta-pills { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px; }
-.meta-pill {
-  display:flex; align-items:center; gap:6px;
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:100px; padding:5px 13px;
-  font-size:12px; color:var(--muted); font-weight:500;
-}
+.meta-pill { display:flex; align-items:center; gap:6px; background:var(--surface); border:1px solid var(--border); border-radius:100px; padding:5px 13px; font-size:12px; color:var(--muted); font-weight:500; }
 .meta-pill::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; }
 
 /* FORM */
-.demo-form {
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:18px; padding:32px; margin-bottom:28px;
-}
+.demo-form { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:32px; margin-bottom:28px; }
 .form-row { margin-bottom:20px; }
 .form-row label { display:block; font-size:13px; font-weight:600; color:var(--text); margin-bottom:7px; }
-.form-row input, .form-row select, .form-row textarea {
-  width:100%; padding:11px 14px;
-  border:1px solid var(--border); border-radius:10px;
-  font-family:'Epilogue',sans-serif; font-size:14px;
-  background:var(--bg); color:var(--text);
-  transition:border 0.18s, background 0.18s; outline:none;
-}
+.form-row input, .form-row select, .form-row textarea { width:100%; padding:11px 14px; border:1px solid var(--border); border-radius:10px; font-family:'Epilogue',sans-serif; font-size:14px; background:var(--bg); color:var(--text); transition:border 0.18s,background 0.18s; outline:none; }
 .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color:var(--accent); background:#fff; }
 .form-row textarea { resize:vertical; min-height:90px; }
 .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .form-hint { font-size:12px; color:var(--muted); margin-top:5px; font-weight:300; }
-
-.generate-btn {
-  width:100%; padding:14px;
-  background:var(--accent); color:#fff;
-  border:none; border-radius:100px;
-  font-family:'Epilogue',sans-serif; font-size:15px; font-weight:600;
-  cursor:pointer; transition:all 0.25s; margin-top:8px;
-  box-shadow:0 4px 16px rgba(26,71,49,0.2);
-}
+.generate-btn { width:100%; padding:14px; background:var(--accent); color:#fff; border:none; border-radius:100px; font-family:'Epilogue',sans-serif; font-size:15px; font-weight:600; cursor:pointer; transition:all 0.25s; margin-top:8px; box-shadow:0 4px 16px rgba(26,71,49,0.2); }
 .generate-btn:hover { opacity:0.9; transform:translateY(-1px); }
 .generate-btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
 
 /* RESULT */
-.result-box {
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:18px; padding:36px;
-  display:none;
-}
+.result-box { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:36px; display:none; }
 .result-box.show { display:block; animation:reveal 0.4s ease forwards; }
-
-.result-header {
-  display:flex; justify-content:space-between; align-items:flex-start;
-  margin-bottom:24px; padding-bottom:20px; border-bottom:1px solid var(--border);
-}
+.result-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:24px; padding-bottom:20px; border-bottom:1px solid var(--border); }
 .result-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:600; }
 .result-sub { font-size:12.5px; color:var(--muted); margin-top:4px; }
-.result-badge {
-  background:var(--accent-lt); color:var(--accent);
-  font-size:11px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase;
-  padding:4px 12px; border-radius:100px; white-space:nowrap;
-}
-
+.result-badge { background:var(--accent-lt); color:var(--accent); font-size:11px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; padding:4px 12px; border-radius:100px; white-space:nowrap; }
 .metrics-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
 .metric-card { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:18px; text-align:center; }
 .metric-val { font-family:'Playfair Display',serif; font-size:28px; color:var(--accent); line-height:1; }
 .metric-lbl { font-size:11px; color:var(--muted); margin-top:5px; text-transform:uppercase; letter-spacing:0.5px; font-weight:500; }
-
 .result-section { margin-bottom:24px; }
 .result-section-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted); margin-bottom:12px; }
-
 .result-table { width:100%; border-collapse:collapse; font-size:13.5px; }
 .result-table th { text-align:left; padding:9px 12px; background:var(--bg); color:var(--muted); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; }
 .result-table td { padding:11px 12px; border-top:1px solid var(--border); }
 .result-table tr:hover td { background:var(--bg); }
-
 .result-narrative { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:20px 22px; font-size:14px; font-weight:300; color:var(--text); line-height:1.8; margin-bottom:20px; }
 .result-narrative p { margin-bottom:12px; }
 .result-narrative p:last-child { margin-bottom:0; }
+.info-note { display:flex; align-items:flex-start; gap:10px; background:var(--accent-lt); border:1px solid #c8dfd0; border-radius:10px; padding:13px 16px; font-size:13px; color:var(--accent); margin-top:20px; line-height:1.6; }
 
-.info-note {
-  display:flex; align-items:flex-start; gap:10px;
-  background:var(--accent-lt); border:1px solid #c8dfd0;
-  border-radius:10px; padding:13px 16px;
-  font-size:13px; color:var(--accent); margin-top:20px; line-height:1.6;
-}
-
-/* CTA BLOCK */
-.demo-cta {
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:18px; padding:32px;
-  text-align:center; margin-top:28px; display:none;
-}
+/* CTA */
+.demo-cta { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:32px; text-align:center; margin-top:28px; display:none; }
 .demo-cta.show { display:block; animation:reveal 0.4s ease forwards; }
 .demo-cta h3 { font-family:'Playfair Display',serif; font-size:22px; margin-bottom:8px; }
 .demo-cta p { font-size:14px; font-weight:300; color:var(--muted); margin-bottom:24px; line-height:1.7; }
 .demo-cta-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
 
-/* REQUIREMENT MODAL */
-.req-overlay {
-  position:fixed; inset:0; z-index:300;
-  background:rgba(28,25,22,0.5); backdrop-filter:blur(4px);
-  display:none; align-items:center; justify-content:center; padding:24px;
-}
+/* MODAL */
+.req-overlay { position:fixed; inset:0; z-index:300; background:rgba(28,25,22,0.5); backdrop-filter:blur(4px); display:none; align-items:center; justify-content:center; padding:24px; }
 .req-overlay.show { display:flex; animation:fadeIn 0.25s ease; }
 @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-
-.req-modal {
-  background:var(--surface); border-radius:20px;
-  padding:40px; width:100%; max-width:520px;
-  max-height:90vh; overflow-y:auto;
-  position:relative; animation:slideUp 0.3s ease;
-}
+.req-modal { background:var(--surface); border-radius:20px; padding:40px; width:100%; max-width:520px; max-height:90vh; overflow-y:auto; position:relative; animation:slideUp 0.3s ease; }
 @keyframes slideUp { from{transform:translateY(20px);opacity:0} to{transform:translateY(0);opacity:1} }
-
-.req-modal-close {
-  position:absolute; top:16px; right:16px;
-  width:32px; height:32px; border-radius:50%;
-  background:var(--surface2); border:none; cursor:pointer;
-  font-size:16px; display:flex; align-items:center; justify-content:center;
-  color:var(--muted); transition:background 0.2s;
-}
+.req-modal-close { position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:50%; background:var(--surface2); border:none; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; color:var(--muted); transition:background 0.2s; }
 .req-modal-close:hover { background:var(--border); }
 .req-modal h2 { font-family:'Playfair Display',serif; font-size:24px; margin-bottom:6px; }
 .req-modal .sub { font-size:13.5px; font-weight:300; color:var(--muted); margin-bottom:28px; line-height:1.65; }
-
 .req-success { display:none; text-align:center; padding:20px 0; }
 .req-success.show { display:block; animation:reveal 0.4s ease forwards; }
 .req-success-icon { font-size:40px; margin-bottom:16px; }
 .req-success h3 { font-family:'Playfair Display',serif; font-size:20px; margin-bottom:8px; }
-.req-success p{ font-size:14px; font-weight:300; color:var(--muted); margin-bottom:24px; line-height:1.7; }
+.req-success p { font-size:14px; font-weight:300; color:var(--muted); margin-bottom:24px; line-height:1.7; }
 .req-success-links { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
 
 /* INVOICE */
@@ -479,7 +215,6 @@ footer {
 .invoice-total-box { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:16px 24px; text-align:right; min-width:200px; }
 .invoice-total-label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
 .invoice-total-amount { font-family:'Playfair Display',serif; font-size:30px; color:var(--accent); }
-
 .followup-item { display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--border); }
 .followup-item:last-child { border-bottom:none; }
 .f-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
@@ -496,9 +231,41 @@ footer {
 .schedule-job { font-size:13.5px; font-weight:400; }
 .schedule-worker-name { font-size:13px; font-weight:600; color:var(--accent); white-space:nowrap; }
 
+/* PDF + JOB DEMO SPECIFIC */
+.sheet-preview { overflow-x:auto; border-radius:12px; border:1px solid var(--border); margin-top:4px; }
+.sheet-preview table { width:100%; border-collapse:collapse; font-size:12px; min-width:600px; }
+.sheet-preview thead tr { background:#1a4731; color:#fff; }
+.sheet-preview thead th { padding:9px 12px; text-align:left; font-weight:600; font-size:11px; letter-spacing:0.3px; }
+.sheet-preview tbody tr.new-row { background:#e8f0eb; }
+.sheet-preview tbody tr.ghost-row { color:#b0a99f; font-style:italic; }
+.sheet-preview tbody td { padding:8px 12px; border-bottom:1px solid #e0d9ce; font-size:12px; }
+.sheet-preview tbody td.accent { color:#1a4731; font-weight:600; }
+
+.extraction-field { display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-bottom:1px solid var(--border); transition:background 0.3s; }
+.extraction-field:last-child { border-bottom:none; }
+.extraction-field.highlighted { background:#e8f0eb; }
+.extraction-label { font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; flex:0 0 130px; }
+.extraction-value { font-size:14px; flex:1; }
+.extraction-status { font-size:11px; font-weight:700; color:var(--accent); margin-left:12px; opacity:0; transition:opacity 0.4s; }
+.extraction-status.visible { opacity:1; }
+
+.pipeline-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:20px; }
+.pipeline-step { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:16px 14px; text-align:center; position:relative; transition:background 0.4s, border-color 0.4s; }
+.pipeline-step.active { background:var(--accent-lt); border-color:#c8dfd0; }
+.pipeline-step.done { background:var(--accent); border-color:var(--accent); }
+.pipeline-step.done .ps-icon, .pipeline-step.done .ps-label { color:#fff; }
+.pipeline-step .ps-icon { font-size:22px; margin-bottom:8px; display:block; }
+.pipeline-step .ps-label { font-size:12px; font-weight:600; color:var(--muted); }
+.pipeline-step.active .ps-label { color:var(--accent); }
+.pipeline-arrow { position:absolute; right:-18px; top:50%; transform:translateY(-50%); font-size:16px; color:var(--border); z-index:2; display:none; }
+
+.status-bar { display:flex; gap:8px; align-items:center; padding:12px 16px; background:var(--accent-lt); border-radius:10px; font-size:13px; color:var(--accent); font-weight:500; margin-bottom:20px; }
+.status-dot { width:8px; height:8px; border-radius:50%; background:var(--accent); animation:pulse 1.5s infinite; flex-shrink:0; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
 /* SCROLL REVEAL */
 @keyframes reveal { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.6s ease, transform 0.6s ease; }
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.6s ease,transform 0.6s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
 
 /* RESPONSIVE */
@@ -512,6 +279,7 @@ footer {
   .zero-band { margin:0 24px; padding:40px 32px; }
   .demo-page-wrap { padding:calc(var(--nav-h)+32px) 24px 60px; }
   footer { padding:40px 24px 28px; }
+  .pipeline-steps { grid-template-columns:1fr; }
 }
 @media(max-width:600px){
   .nav-pill { display:none; }
@@ -550,11 +318,7 @@ footer {
       <h2>Send Your Requirement</h2>
       <p class="sub">Describe what you need automated. The more detail the better.</p>
       <div class="form-row"><label>Your Name</label><input type="text" id="req-name" placeholder="Jane Smith"/></div>
-      <div class="form-row">
-        <label>Email <span style="color:var(--accent2)">*</span></label>
-        <input type="email" id="req-email" placeholder="jane@yourbusiness.com"/>
-        <div class="form-hint">Required — so I can get back to you.</div>
-      </div>
+      <div class="form-row"><label>Email <span style="color:var(--accent2)">*</span></label><input type="email" id="req-email" placeholder="jane@yourbusiness.com"/><div class="form-hint">Required — so I can get back to you.</div></div>
       <div class="form-row"><label>What do you need automated?</label><textarea id="req-detail" placeholder="e.g. We track worker hours manually every week for 15 employees. Takes about 3 hours. We also chase clients for payment by hand..."></textarea></div>
       <input type="hidden" id="req-demo-source" value=""/>
       <button class="generate-btn" onclick="submitRequirement()" id="req-submit-btn">Send Requirement</button>
@@ -584,7 +348,7 @@ footer {
     <div class="trust-bar">
       <div class="trust-item"><div class="trust-val">$0</div><div class="trust-label">Ongoing Software Cost</div></div>
       <div class="trust-divider"></div>
-      <div class="trust-item"><div class="trust-val">6</div><div class="trust-label">Live Demos</div></div>
+      <div class="trust-item"><div class="trust-val">8</div><div class="trust-label">Live Demos</div></div>
       <div class="trust-divider"></div>
       <div class="trust-item"><div class="trust-val">Google</div><div class="trust-label">Tools You Already Have</div></div>
       <div class="trust-divider"></div>
@@ -635,6 +399,18 @@ footer {
         <div class="demo-card-desc">Enter your numbers. Get a formatted report with a written performance summary sent to your inbox.</div>
         <div class="demo-card-footer"><div class="demo-card-label">Business Report</div><div class="demo-arrow">→</div></div>
       </div>
+      <div class="demo-card" onclick="showDemo('pdfextract')">
+        <div class="demo-icon-wrap">🗂️</div>
+        <div class="demo-card-title">Extract invoice data from a PDF automatically</div>
+        <div class="demo-card-desc">Drop a supplier invoice into Drive. Every field pulls into a Sheet instantly — no copy-paste, no manual entry.</div>
+        <div class="demo-card-footer"><div class="demo-card-label">PDF → Google Sheets</div><div class="demo-arrow">→</div></div>
+      </div>
+      <div class="demo-card" onclick="showDemo('jobtracker')">
+        <div class="demo-icon-wrap">✅</div>
+        <div class="demo-card-title">Mark a job complete — payroll updates itself</div>
+        <div class="demo-card-desc">One status change logs to Job Tracker, recalculates payroll, and sends confirmation — automatically.</div>
+        <div class="demo-card-footer"><div class="demo-card-label">Job Tracker → Payroll</div><div class="demo-arrow">→</div></div>
+      </div>
     </div>
   </div>
 
@@ -651,7 +427,7 @@ footer {
       <div class="how-step"><div class="how-num">04</div><div class="how-title">Get in touch</div><div class="how-desc">If it makes sense for your business, send a requirement or book a call.</div></div>
     </div>
   </div>
-  
+
   <div class="section">
     <div class="reveal">
       <div class="section-eyebrow">Why It Works</div>
@@ -802,8 +578,8 @@ footer {
       <div class="demo-cta-actions"><button class="btn-primary" onclick="openReq('Quote to Invoice')">Send a Requirement</button><a href="https://cal.com/vikram-cal/30min" target="_blank" class="btn-ghost">Book a Call</a></div>
     </div>
   </div>
-  </div>
-  
+</div>
+
 <!-- EXPENSE DEMO -->
 <div class="page" id="page-expense">
   <div class="demo-page-wrap">
@@ -822,18 +598,9 @@ footer {
       <div class="form-row"><label>Business Name</label><input type="text" id="exp-biz" placeholder="e.g. Clearview Window Cleaning"/></div>
       <div style="font-size:13px;font-weight:600;margin-bottom:12px">Job Details</div>
       <div id="exp-jobs">
-        <div class="exp-job-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px">
-          <div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><label>Job Name</label><input type="text" class="ej-name" placeholder="e.g. CBD Office Block"/></div><div class="form-row" style="margin-bottom:0"><label>Revenue ($)</label><input type="number" class="ej-rev" placeholder="e.g. 850"/></div></div>
-          <div class="form-grid"><div class="form-row" style="margin-bottom:0"><label>Labour Cost ($)</label><input type="number" class="ej-labour" placeholder="e.g. 320"/></div><div class="form-row" style="margin-bottom:0"><label>Materials + Fuel ($)</label><input type="number" class="ej-mat" placeholder="e.g. 90"/></div></div>
-        </div>
-        <div class="exp-job-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px">
-          <div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><input type="text" class="ej-name" placeholder="e.g. Riverside Apartments"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-rev" placeholder="e.g. 1100"/></div></div>
-          <div class="form-grid"><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-labour" placeholder="e.g. 420"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-mat" placeholder="e.g. 60"/></div></div>
-        </div>
-        <div class="exp-job-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px">
-          <div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><input type="text" class="ej-name" placeholder="e.g. Greenfield Park"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-rev" placeholder="e.g. 650"/></div></div>
-          <div class="form-grid"><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-labour" placeholder="e.g. 240"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-mat" placeholder="e.g. 45"/></div></div>
-        </div>
+        <div class="exp-job-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px"><div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><label>Job Name</label><input type="text" class="ej-name" placeholder="e.g. CBD Office Block"/></div><div class="form-row" style="margin-bottom:0"><label>Revenue ($)</label><input type="number" class="ej-rev" placeholder="e.g. 850"/></div></div><div class="form-grid"><div class="form-row" style="margin-bottom:0"><label>Labour Cost ($)</label><input type="number" class="ej-labour" placeholder="e.g. 320"/></div><div class="form-row" style="margin-bottom:0"><label>Materials + Fuel ($)</label><input type="number" class="ej-mat" placeholder="e.g. 90"/></div></div></div>
+        <div class="exp-job-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px"><div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><input type="text" class="ej-name" placeholder="e.g. Riverside Apartments"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-rev" placeholder="e.g. 1100"/></div></div><div class="form-grid"><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-labour" placeholder="e.g. 420"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-mat" placeholder="e.g. 60"/></div></div></div>
+        <div class="exp-job-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px"><div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><input type="text" class="ej-name" placeholder="e.g. Greenfield Park"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-rev" placeholder="e.g. 650"/></div></div><div class="form-grid"><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-labour" placeholder="e.g. 240"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="ej-mat" placeholder="e.g. 45"/></div></div></div>
       </div>
       <button class="generate-btn" onclick="generateExpense()" style="margin-top:20px">Calculate Job Profitability</button>
     </div>
@@ -869,18 +636,9 @@ footer {
       <div class="form-row"><label>Business Name</label><input type="text" id="bil-biz" placeholder="e.g. ProClean Services"/></div>
       <div style="font-size:13px;font-weight:600;margin-bottom:12px">Client Details</div>
       <div id="bil-clients">
-        <div class="bil-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px">
-          <div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><label>Client Name</label><input type="text" class="bc-name" placeholder="e.g. Horizon Properties"/></div><div class="form-row" style="margin-bottom:0"><label>Amount ($)</label><input type="number" class="bc-amount" placeholder="e.g. 800"/></div></div>
-          <div class="form-row" style="margin-bottom:0"><label>Billing Frequency</label><select class="bc-freq"><option>Weekly</option><option selected>Monthly</option></select></div>
-        </div>
-        <div class="bil-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px">
-          <div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><input type="text" class="bc-name" placeholder="e.g. Riverside Gym"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="bc-amount" placeholder="e.g. 1400"/></div></div>
-          <div class="form-row" style="margin-bottom:0"><select class="bc-freq"><option>Weekly</option><option selected>Monthly</option></select></div>
-        </div>
-        <div class="bil-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px">
-          <div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><input type="text" class="bc-name" placeholder="e.g. City Council Block"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="bc-amount" placeholder="e.g. 350"/></div></div>
-          <div class="form-row" style="margin-bottom:0"><select class="bc-freq"><option selected>Weekly</option><option>Monthly</option></select></div>
-        </div>
+        <div class="bil-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px"><div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><label>Client Name</label><input type="text" class="bc-name" placeholder="e.g. Horizon Properties"/></div><div class="form-row" style="margin-bottom:0"><label>Amount ($)</label><input type="number" class="bc-amount" placeholder="e.g. 800"/></div></div><div class="form-row" style="margin-bottom:0"><label>Billing Frequency</label><select class="bc-freq"><option>Weekly</option><option selected>Monthly</option></select></div></div>
+        <div class="bil-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px"><div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><input type="text" class="bc-name" placeholder="e.g. Riverside Gym"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="bc-amount" placeholder="e.g. 1400"/></div></div><div class="form-row" style="margin-bottom:0"><select class="bc-freq"><option>Weekly</option><option selected>Monthly</option></select></div></div>
+        <div class="bil-row" style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px"><div class="form-grid" style="margin-bottom:12px"><div class="form-row" style="margin-bottom:0"><input type="text" class="bc-name" placeholder="e.g. City Council Block"/></div><div class="form-row" style="margin-bottom:0"><input type="number" class="bc-amount" placeholder="e.g. 350"/></div></div><div class="form-row" style="margin-bottom:0"><select class="bc-freq"><option selected>Weekly</option><option>Monthly</option></select></div></div>
       </div>
       <button class="generate-btn" onclick="generateBilling()" style="margin-top:20px">Generate Billing Schedule</button>
     </div>
@@ -943,20 +701,269 @@ footer {
   </div>
 </div>
 
+<!-- PDF EXTRACTION DEMO -->
+<div class="page" id="page-pdfextract">
+  <div class="demo-page-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Back to all demos</button>
+    <div class="demo-page-header">
+      <div class="demo-page-icon">🗂️</div>
+      <h1>Extract invoice data from a PDF automatically</h1>
+      <p>A real supplier invoice is shown below. Click Extract Data — watch every field get pulled out field by field, logged to a live Google Sheet, and optionally emailed to you.</p>
+    </div>
+    <div class="meta-pills">
+      <span class="meta-pill">Google Drive + Apps Script</span>
+      <span class="meta-pill">Logs to real Google Sheet</span>
+      <span class="meta-pill">Optional email delivery</span>
+      <span class="meta-pill">0 manual entry</span>
+    </div>
+
+    <!-- Pipeline visual -->
+    <div class="pipeline-steps" style="margin-bottom:28px;">
+      <div class="pipeline-step" id="ps1">
+        <span class="ps-icon">📄</span>
+        <div class="ps-label">PDF in Drive folder</div>
+      </div>
+      <div class="pipeline-step" id="ps2">
+        <span class="ps-icon">⚙️</span>
+        <div class="ps-label">Apps Script extracts fields</div>
+      </div>
+      <div class="pipeline-step" id="ps3">
+        <span class="ps-icon">📊</span>
+        <div class="ps-label">Row logged to Sheet</div>
+      </div>
+    </div>
+
+    <!-- Preloaded invoice -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:32px;margin-bottom:20px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:18px;display:flex;align-items:center;gap:8px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--accent2);display:inline-block;"></span>
+        Source Document — Supplier Invoice (preloaded)
+      </div>
+      <!-- Invoice document -->
+      <div style="background:#fff;border:1px solid #e0d9ce;border-radius:12px;padding:32px;max-width:620px;margin:0 auto;font-family:'Georgia',serif;" id="pdf-doc">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;padding-bottom:24px;border-bottom:2px solid #1a4731;">
+          <div>
+            <div style="font-size:22px;font-weight:700;color:#1c1916;letter-spacing:-0.5px;">BuildRight Supplies<span style="color:#b8943a;">.</span></div>
+            <div style="font-size:11px;color:#6b6460;margin-top:6px;line-height:1.7;">42 Commerce Park, Austin TX 78701<br>supplies@buildright.com · (512) 400-9910</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:24px;font-weight:700;color:#1a4731;letter-spacing:2px;">INVOICE</div>
+            <div style="font-size:13px;font-weight:600;color:#1c1916;margin-top:4px;">#INV-2026-0441</div>
+            <div style="font-size:11px;color:#6b6460;margin-top:2px;">Date: April 22, 2026</div>
+            <div style="display:inline-block;margin-top:8px;background:#fef9ec;color:#9a7020;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;padding:3px 12px;border-radius:100px;">Awaiting Payment</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
+          <div><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b6460;margin-bottom:6px;border-bottom:1px solid #e0d9ce;padding-bottom:4px;">Bill From</div><div style="font-size:13px;line-height:1.8;color:#1c1916;">BuildRight Supplies<br>Austin, TX 78701<br>supplies@buildright.com</div></div>
+          <div><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b6460;margin-bottom:6px;border-bottom:1px solid #e0d9ce;padding-bottom:4px;">Bill To</div><div style="font-size:13px;line-height:1.8;color:#1c1916;">Greenfield Contractors<br>Dallas, TX 75201<br>accounts@greenfield.com</div></div>
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:20px;">
+          <thead><tr style="background:#f7f4ef;"><th style="padding:8px 10px;text-align:left;font-size:9px;text-transform:uppercase;letter-spacing:0.8px;color:#6b6460;border-bottom:2px solid #e0d9ce;font-weight:700;">Description</th><th style="padding:8px 10px;text-align:center;font-size:9px;text-transform:uppercase;letter-spacing:0.8px;color:#6b6460;border-bottom:2px solid #e0d9ce;font-weight:700;">Qty</th><th style="padding:8px 10px;text-align:right;font-size:9px;text-transform:uppercase;letter-spacing:0.8px;color:#6b6460;border-bottom:2px solid #e0d9ce;font-weight:700;">Unit Price</th><th style="padding:8px 10px;text-align:right;font-size:9px;text-transform:uppercase;letter-spacing:0.8px;color:#6b6460;border-bottom:2px solid #e0d9ce;font-weight:700;">Amount</th></tr></thead>
+          <tbody>
+            <tr><td style="padding:9px 10px;border-bottom:1px solid #e0d9ce;">Structural Timber (2×4, 8ft)</td><td style="padding:9px 10px;text-align:center;border-bottom:1px solid #e0d9ce;">120</td><td style="padding:9px 10px;text-align:right;border-bottom:1px solid #e0d9ce;">$4.80</td><td style="padding:9px 10px;text-align:right;border-bottom:1px solid #e0d9ce;font-weight:600;">$576.00</td></tr>
+            <tr style="background:#fafaf8;"><td style="padding:9px 10px;border-bottom:1px solid #e0d9ce;">Concrete Mix (50lb bags)</td><td style="padding:9px 10px;text-align:center;border-bottom:1px solid #e0d9ce;">40</td><td style="padding:9px 10px;text-align:right;border-bottom:1px solid #e0d9ce;">$9.25</td><td style="padding:9px 10px;text-align:right;border-bottom:1px solid #e0d9ce;font-weight:600;">$370.00</td></tr>
+            <tr><td style="padding:9px 10px;border-bottom:1px solid #e0d9ce;">Roofing Nails (5lb box)</td><td style="padding:9px 10px;text-align:center;border-bottom:1px solid #e0d9ce;">12</td><td style="padding:9px 10px;text-align:right;border-bottom:1px solid #e0d9ce;">$14.00</td><td style="padding:9px 10px;text-align:right;border-bottom:1px solid #e0d9ce;font-weight:600;">$168.00</td></tr>
+            <tr style="background:#fafaf8;"><td style="padding:9px 10px;">Delivery — Site Drop (Dallas)</td><td style="padding:9px 10px;text-align:center;">1</td><td style="padding:9px 10px;text-align:right;">$86.00</td><td style="padding:9px 10px;text-align:right;font-weight:600;">$86.00</td></tr>
+          </tbody>
+        </table>
+        <div style="display:flex;justify-content:flex-end;">
+          <div style="min-width:220px;background:#f7f4ef;border:1px solid #e0d9ce;border-radius:10px;padding:16px 20px;">
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;color:#6b6460;"><span>Subtotal</span><span style="font-weight:600;color:#1c1916;">$1,200.00</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:12px;color:#6b6460;padding-bottom:12px;border-bottom:1px solid #e0d9ce;"><span>Tax (8.25%)</span><span style="font-weight:600;color:#1c1916;">$99.00</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:#6b6460;font-weight:700;">Total Due</span><span style="font-family:'Playfair Display',serif;font-size:26px;color:#1a4731;font-weight:600;">$1,299.00</span></div>
+            <div style="font-size:10px;color:#6b6460;text-align:right;margin-top:4px;">Net 30 · Due May 22, 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Extract button -->
+    <button class="generate-btn" id="pdf-extract-btn" onclick="runPdfExtraction()">⚡ Extract Data from Invoice</button>
+
+    <!-- Animated extraction result -->
+    <div id="pdf-result" style="display:none;margin-top:24px;">
+      <div class="status-bar" id="pdf-status-bar">
+        <div class="status-dot"></div>
+        <span id="pdf-status-text">Reading document…</span>
+      </div>
+
+      <!-- Field-by-field extraction visual -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:20px;">
+        <div style="padding:16px 20px;background:var(--bg);border-bottom:1px solid var(--border);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);">Fields Being Extracted</div>
+        <div id="extraction-fields">
+          <div class="extraction-field" id="ef-vendor"><div class="extraction-label">Vendor</div><div class="extraction-value" id="ev-vendor">—</div><div class="extraction-status" id="es-vendor">✓ Logged</div></div>
+          <div class="extraction-field" id="ef-invnum"><div class="extraction-label">Invoice #</div><div class="extraction-value" id="ev-invnum">—</div><div class="extraction-status" id="es-invnum">✓ Logged</div></div>
+          <div class="extraction-field" id="ef-date"><div class="extraction-label">Date</div><div class="extraction-value" id="ev-date">—</div><div class="extraction-status" id="es-date">✓ Logged</div></div>
+          <div class="extraction-field" id="ef-items"><div class="extraction-label">Line Items</div><div class="extraction-value" id="ev-items">—</div><div class="extraction-status" id="es-items">✓ Logged</div></div>
+          <div class="extraction-field" id="ef-sub"><div class="extraction-label">Subtotal</div><div class="extraction-value" id="ev-sub">—</div><div class="extraction-status" id="es-sub">✓ Logged</div></div>
+          <div class="extraction-field" id="ef-tax"><div class="extraction-label">Tax</div><div class="extraction-value" id="ev-tax">—</div><div class="extraction-status" id="es-tax">✓ Logged</div></div>
+          <div class="extraction-field" id="ef-total"><div class="extraction-label">Total Due</div><div class="extraction-value" id="ev-total" style="font-family:'Playfair Display',serif;font-size:18px;color:var(--accent);">—</div><div class="extraction-status" id="es-total">✓ Logged</div></div>
+          <div class="extraction-field" id="ef-terms"><div class="extraction-label">Terms</div><div class="extraction-value" id="ev-terms">—</div><div class="extraction-status" id="es-terms">✓ Logged</div></div>
+        </div>
+      </div>
+
+      <!-- Metrics -->
+      <div class="metrics-row" id="pdf-metrics" style="display:none;">
+        <div class="metric-card"><div class="metric-val">8</div><div class="metric-lbl">Fields Extracted</div></div>
+        <div class="metric-card"><div class="metric-val">$1,299</div><div class="metric-lbl">Total Logged</div></div>
+        <div class="metric-card"><div class="metric-val">0</div><div class="metric-lbl">Manual Entries</div></div>
+      </div>
+
+      <!-- Sheet preview -->
+      <div id="pdf-sheet-wrap" style="display:none;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:10px;">Google Sheet — Live Row Added</div>
+        <div class="sheet-preview">
+          <table>
+            <thead><tr><th>Timestamp</th><th>Vendor</th><th>Invoice #</th><th>Date</th><th>Subtotal</th><th>Tax</th><th>Total Due</th><th>Terms</th></tr></thead>
+            <tbody>
+              <tr class="new-row">
+                <td class="accent" id="pdf-sheet-ts">—</td>
+                <td>BuildRight Supplies</td><td>INV-2026-0441</td><td>Apr 22, 2026</td>
+                <td>$1,200.00</td><td>$99.00</td>
+                <td class="accent">$1,299.00</td><td>Net 30</td>
+              </tr>
+              <tr class="ghost-row"><td colspan="8" style="padding:8px 12px;font-size:11px;">← Previous invoices appear above this row</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-note" style="margin-top:12px;">✓ In the live system, any PDF dropped into a designated Drive folder triggers this automatically. No manual opening, no copy-paste, no missed invoices.</div>
+      </div>
+
+      <!-- Email CTA -->
+      <div id="pdf-email-wrap" style="display:none;margin-top:20px;padding:20px;background:var(--surface2);border:1px solid var(--border);border-radius:14px;">
+        <div style="font-size:14px;font-weight:600;margin-bottom:6px;">Want this data sent to your inbox?</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:14px;">Enter your email and I will send the extracted data exactly as it appears in the Sheet.</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">
+          <div style="flex:1;min-width:200px;"><input type="email" id="pdf-email" placeholder="your@email.com" style="width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:10px;font-family:Epilogue,sans-serif;font-size:14px;background:#fff;outline:none;"/></div>
+          <button class="btn-primary" id="pdf-email-btn" onclick="sendPdfEmail()" style="white-space:nowrap;padding:12px 22px;">Send to My Inbox →</button>
+        </div>
+        <div id="pdf-email-status" style="font-size:13px;color:var(--accent);margin-top:10px;display:none;font-weight:500;"></div>
+      </div>
+    </div>
+
+    <div class="demo-cta" id="pdfextract-cta" style="margin-top:24px;">
+      <h3>Want this running on your invoice folders?</h3>
+      <p>Every PDF invoice your business receives gets logged to Sheets automatically. No data entry. No missed invoices. No formatting.</p>
+      <div class="demo-cta-actions"><button class="btn-primary" onclick="openReq('PDF → Google Sheets')">Send a Requirement</button><a href="https://cal.com/vikram-cal/30min" target="_blank" class="btn-ghost">Book a Call</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- JOB TRACKER DEMO -->
+<div class="page" id="page-jobtracker">
+  <div class="demo-page-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Back to all demos</button>
+    <div class="demo-page-header">
+      <div class="demo-page-icon">✅</div>
+      <h1>Mark a job complete — payroll updates itself</h1>
+      <p>Fill in the job details and mark it complete. Watch it log to two separate sheets simultaneously, calculate overtime, and fire a real confirmation email to your inbox.</p>
+    </div>
+    <div class="meta-pills">
+      <span class="meta-pill">Google Sheets + Apps Script</span>
+      <span class="meta-pill">Dual sheet logging</span>
+      <span class="meta-pill">OT auto-calculated</span>
+      <span class="meta-pill">Real email sent</span>
+    </div>
+
+    <!-- Pipeline -->
+    <div class="pipeline-steps" style="margin-bottom:28px;">
+      <div class="pipeline-step" id="jps1"><span class="ps-icon">📝</span><div class="ps-label">Job marked Complete</div></div>
+      <div class="pipeline-step" id="jps2"><span class="ps-icon">⚙️</span><div class="ps-label">Script runs OT calc</div></div>
+      <div class="pipeline-step" id="jps3"><span class="ps-icon">📊</span><div class="ps-label">Both sheets updated</div></div>
+    </div>
+
+    <div class="demo-form">
+      <div class="form-grid">
+        <div class="form-row"><label>Job Name</label><input type="text" id="jt-job" placeholder="e.g. CBD Office Block — April Clean"/></div>
+        <div class="form-row"><label>Client</label><input type="text" id="jt-client" placeholder="e.g. Horizon Properties"/></div>
+      </div>
+      <div class="form-grid">
+        <div class="form-row"><label>Assigned Worker</label><input type="text" id="jt-worker" placeholder="e.g. James R."/></div>
+        <div class="form-row"><label>Status</label><select id="jt-status"><option value="Complete">✅ Complete</option><option value="Pending">⏳ Pending</option></select></div>
+      </div>
+      <div class="form-grid">
+        <div class="form-row"><label>Hours Worked</label><input type="number" id="jt-hours" placeholder="e.g. 44"/><div class="form-hint">Overtime calculated above 40hrs at 1.5×</div></div>
+        <div class="form-row"><label>Hourly Rate ($)</label><input type="number" id="jt-rate" placeholder="e.g. 18"/></div>
+      </div>
+      <div class="form-row">
+        <label>Your Email <span style="font-size:11px;color:var(--muted);font-weight:400;">(optional — receive the real payroll confirmation email)</span></label>
+        <input type="email" id="jt-email" placeholder="your@email.com"/>
+      </div>
+      <button class="generate-btn" onclick="runJobComplete()">Mark Job Complete → Update Payroll</button>
+    </div>
+
+    <!-- Result -->
+    <div id="jt-result" style="display:none;margin-top:8px;">
+
+      <div class="status-bar" id="jt-status-bar">
+        <div class="status-dot"></div>
+        <span id="jt-status-text">Logging to sheets…</span>
+      </div>
+
+      <!-- Metrics -->
+      <div class="metrics-row" id="jt-metrics" style="margin-bottom:20px;"></div>
+
+      <!-- OT breakdown visual -->
+      <div id="jt-ot-visual" style="display:none;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:20px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:12px;">Payroll Calculation</div>
+        <div id="jt-ot-bars"></div>
+      </div>
+
+      <!-- Sheet 1 — Job Tracker -->
+      <div style="margin-bottom:20px;">
+        <div class="result-section-title" style="display:flex;align-items:center;gap:8px;">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;"></span>
+          Sheet 1 — Job Tracker (Updated)
+        </div>
+        <div class="sheet-preview">
+          <table>
+            <thead><tr><th>Timestamp</th><th>Job Name</th><th>Client</th><th>Worker</th><th>Hours</th><th>Rate</th><th>Total Pay</th><th>Status</th></tr></thead>
+            <tbody id="jt-job-rows"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Sheet 2 — Payroll Log -->
+      <div style="margin-bottom:20px;">
+        <div class="result-section-title" style="display:flex;align-items:center;gap:8px;">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--accent2);display:inline-block;"></span>
+          Sheet 2 — Payroll Log (Auto-Updated)
+        </div>
+        <div class="sheet-preview">
+          <table>
+            <thead><tr><th>Timestamp</th><th>Worker</th><th>Job</th><th>Reg Hrs</th><th>OT Hrs</th><th>Rate</th><th>Total Pay</th><th>Week</th></tr></thead>
+            <tbody id="jt-pay-rows"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="info-note">✓ In the live system, both sheets update the instant a job is marked complete — by anyone on your team, from any device, with no manual work.</div>
+
+      <div id="jt-email-sent" style="display:none;margin-top:14px;padding:14px 18px;background:var(--accent-lt);border:1px solid #c8dfd0;border-radius:10px;font-size:13px;color:var(--accent);font-weight:500;">
+        📧 Payroll confirmation email sent to your inbox. Check it — it is the same email your team would receive in the live system.
+      </div>
+    </div>
+
+    <div class="demo-cta" id="jt-cta" style="margin-top:24px;">
+      <h3>Want job completion tied to payroll automatically?</h3>
+      <p>Your team marks jobs done. Payroll calculates itself. You see the summary without touching anything.</p>
+      <div class="demo-cta-actions"><button class="btn-primary" onclick="openReq('Job Tracker → Payroll')">Send a Requirement</button><a href="https://cal.com/vikram-cal/30min" target="_blank" class="btn-ghost">Book a Call</a></div>
+    </div>
+  </div>
+</div>
+
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzIqavT0NRCCOx5-gROXkaOLG0N58LP0gHNJXUbC7OQcBdtXndLkMWguTKZ8PLcTUzs/exec';
 
+// ── NAVIGATION ────────────────────────────────────────────────
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
   window.scrollTo(0,0);
 }
+function showDemo(id) { showPage(id); logDemoUse(id); }
 
-function showDemo(id) {
-  showPage(id);
-  logDemoUse(id);
-}
-
+// ── MODAL ─────────────────────────────────────────────────────
 function openReq(source) {
   document.getElementById('req-demo-source').value = source;
   document.getElementById('req-form-wrap').style.display = 'block';
@@ -966,13 +973,8 @@ function openReq(source) {
   document.getElementById('req-overlay').classList.add('show');
   document.body.style.overflow = 'hidden';
 }
-function closeReq() {
-  document.getElementById('req-overlay').classList.remove('show');
-  document.body.style.overflow = '';
-}
-function closeReqIfOutside(e) {
-  if (e.target === document.getElementById('req-overlay')) closeReq();
-}
+function closeReq() { document.getElementById('req-overlay').classList.remove('show'); document.body.style.overflow = ''; }
+function closeReqIfOutside(e) { if (e.target === document.getElementById('req-overlay')) closeReq(); }
 
 async function submitRequirement() {
   const name = document.getElementById('req-name').value.trim();
@@ -984,52 +986,36 @@ async function submitRequirement() {
   const btn = document.getElementById('req-submit-btn');
   btn.disabled = true; btn.textContent = 'Sending...';
   try {
-    await fetch(SCRIPT_URL, {
-      method: 'POST', mode: 'no-cors',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({type:'requirement', name, email, requirement:detail, demo})
-    });
+    await fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify({type:'requirement',name,email,requirement:detail,demo}) });
   } catch(e) {}
   document.getElementById('req-form-wrap').style.display = 'none';
   document.getElementById('req-success').classList.add('show');
 }
 
 async function logDemoUse(demo) {
-  try {
-    await fetch(SCRIPT_URL, {
-      method: 'POST', mode: 'no-cors',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({type:'demo_use', demo})
-    });
-  } catch(e) {}
+  try { await fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify({type:'demo_use',demo}) }); } catch(e) {}
 }
 
+// ── HELPERS ───────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
 const fmtM = n => '$' + Number(n).toLocaleString('en-US',{minimumFractionDigits:0});
 const todayStr = () => new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-const addDays = (n) => { const d=new Date(); d.setDate(d.getDate()+n); return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); };
+const addDays = n => { const d=new Date(); d.setDate(d.getDate()+n); return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); };
+const nowTs = () => new Date().toISOString().replace('T',' ').slice(0,19);
+const weekStr = () => { const d=new Date(); return d.getFullYear()+'-W'+String(Math.ceil((d-new Date(d.getFullYear(),0,1))/604800000)).padStart(2,'0'); };
 
+// ── ORIGINAL DEMOS ────────────────────────────────────────────
 function generatePayroll() {
-  const biz = $('pay-biz').value||'Your Business';
-  const period = $('pay-period').value;
-  const otThresh = parseFloat($('pay-ot').value)||40;
-  const rate = parseFloat($('pay-rate').value)||0;
-  const rows = document.querySelectorAll('.pay-worker-row');
+  const biz=$('pay-biz').value||'Your Business';
+  const period=$('pay-period').value;
+  const otThresh=parseFloat($('pay-ot').value)||40;
+  const rate=parseFloat($('pay-rate').value)||0;
+  const rows=document.querySelectorAll('.pay-worker-row');
   let workers=[];
-  rows.forEach(r=>{
-    const name=r.querySelector('.w-name').value.trim();
-    const hours=parseFloat(r.querySelector('.w-hours').value)||0;
-    if(name&&hours) workers.push({name,hours});
-  });
+  rows.forEach(r=>{const name=r.querySelector('.w-name').value.trim();const hours=parseFloat(r.querySelector('.w-hours').value)||0;if(name&&hours)workers.push({name,hours});});
   if(!workers.length||!rate){alert('Please enter at least one worker and the hourly rate.');return;}
   let totalPay=0,totalOT=0,tableHTML='';
-  workers.forEach(w=>{
-    const reg=Math.min(w.hours,otThresh);
-    const ot=Math.max(0,w.hours-otThresh);
-    const pay=(reg*rate)+(ot*rate*1.5);
-    totalPay+=pay; totalOT+=ot;
-    tableHTML+=`<tr><td>${w.name}</td><td>${reg}h</td><td>${ot>0?ot+'h':'—'}</td><td><strong>${fmtM(pay)}</strong></td></tr>`;
-  });
+  workers.forEach(w=>{const reg=Math.min(w.hours,otThresh);const ot=Math.max(0,w.hours-otThresh);const pay=(reg*rate)+(ot*rate*1.5);totalPay+=pay;totalOT+=ot;tableHTML+=`<tr><td>${w.name}</td><td>${reg}h</td><td>${ot>0?ot+'h':'—'}</td><td><strong>${fmtM(pay)}</strong></td></tr>`;});
   $('pay-title').textContent=biz+' — Payroll';
   $('pay-sub').textContent=period+' · Generated '+todayStr();
   $('pay-metrics').innerHTML=`<div class="metric-card"><div class="metric-val">${workers.length}</div><div class="metric-lbl">Workers</div></div><div class="metric-card"><div class="metric-val">${fmtM(totalPay)}</div><div class="metric-lbl">Total Payroll</div></div><div class="metric-card"><div class="metric-val">${totalOT}h</div><div class="metric-lbl">Overtime Hours</div></div>`;
@@ -1047,13 +1033,7 @@ function generateSchedule() {
   const workers=workersRaw.split(',').map(w=>w.trim()).filter(Boolean);
   const jobs=jobsRaw.split('\n').map(j=>j.trim()).filter(Boolean);
   let html='';
-  jobs.forEach((job,i)=>{
-    const assigned=workers[i%workers.length];
-    const parts=job.split('—');
-    const day=parts[0]?parts[0].trim():'Job '+(i+1);
-    const desc=parts[1]?parts[1].trim():job;
-    html+=`<div class="schedule-row"><span class="schedule-day-badge">${day}</span><span class="schedule-job">${desc}</span><span class="schedule-worker-name">${assigned}</span></div>`;
-  });
+  jobs.forEach((job,i)=>{const assigned=workers[i%workers.length];const parts=job.split('—');const day=parts[0]?parts[0].trim():'Job '+(i+1);const desc=parts[1]?parts[1].trim():job;html+=`<div class="schedule-row"><span class="schedule-day-badge">${day}</span><span class="schedule-job">${desc}</span><span class="schedule-worker-name">${assigned}</span></div>`;});
   $('sch-title').textContent=biz+' — Week Schedule';
   $('sch-board').innerHTML=html;
   $('sch-result').classList.add('show');
@@ -1077,13 +1057,7 @@ function generateInvoice() {
   $('inv-to').innerHTML=client+'<br>'+email;
   $('inv-table').innerHTML=`<tr><td>${service}</td><td>${fmtM(amount)}</td></tr>`;
   $('inv-total').textContent=fmtM(amount);
-  const fups=[
-    {day:0,label:'Invoice sent to '+client,s:'done'},
-    {day:Math.round(due*0.5),label:'Friendly reminder — payment due in '+Math.round(due*0.5)+' days',s:'pending'},
-    {day:due,label:'Due date reminder sent',s:'future'},
-    {day:due+3,label:'Overdue notice (if unpaid)',s:'future'},
-    {day:due+7,label:'Final follow up (if unpaid)',s:'future'},
-  ];
+  const fups=[{day:0,label:'Invoice sent to '+client,s:'done'},{day:Math.round(due*0.5),label:'Friendly reminder — payment due in '+Math.round(due*0.5)+' days',s:'pending'},{day:due,label:'Due date reminder sent',s:'future'},{day:due+3,label:'Overdue notice (if unpaid)',s:'future'},{day:due+7,label:'Final follow up (if unpaid)',s:'future'}];
   $('inv-followups').innerHTML=fups.map(f=>`<div class="followup-item"><div class="f-dot ${f.s}"></div><div class="f-text">${f.label}</div><div class="f-day">Day ${f.day}</div></div>`).join('');
   $('inv-result').classList.add('show');
   $('inv-cta').classList.add('show');
@@ -1094,23 +1068,10 @@ function generateExpense() {
   const biz=$('exp-biz').value||'Your Business';
   const jobRows=document.querySelectorAll('.exp-job-row');
   let jobs=[];
-  jobRows.forEach(r=>{
-    const name=r.querySelector('.ej-name').value.trim();
-    const rev=parseFloat(r.querySelector('.ej-rev').value)||0;
-    const labour=parseFloat(r.querySelector('.ej-labour').value)||0;
-    const mat=parseFloat(r.querySelector('.ej-mat').value)||0;
-    if(name&&rev) jobs.push({name,rev,labour,mat});
-  });
+  jobRows.forEach(r=>{const name=r.querySelector('.ej-name').value.trim();const rev=parseFloat(r.querySelector('.ej-rev').value)||0;const labour=parseFloat(r.querySelector('.ej-labour').value)||0;const mat=parseFloat(r.querySelector('.ej-mat').value)||0;if(name&&rev)jobs.push({name,rev,labour,mat});});
   if(!jobs.length){alert('Please enter at least one job.');return;}
   let totalRev=0,totalCost=0,totalProfit=0,tableHTML='';
-  jobs.forEach(j=>{
-    const cost=j.labour+j.mat;
-    const profit=j.rev-cost;
-    const margin=j.rev>0?((profit/j.rev)*100).toFixed(1):0;
-    totalRev+=j.rev; totalCost+=cost; totalProfit+=profit;
-    const col=profit>=0?'var(--accent)':'#c0392b';
-    tableHTML+=`<tr><td>${j.name}</td><td>${fmtM(j.rev)}</td><td>${fmtM(cost)}</td><td style="color:${col};font-weight:600">${fmtM(profit)}</td><td>${margin}%</td></tr>`;
-  });
+  jobs.forEach(j=>{const cost=j.labour+j.mat;const profit=j.rev-cost;const margin=j.rev>0?((profit/j.rev)*100).toFixed(1):0;totalRev+=j.rev;totalCost+=cost;totalProfit+=profit;const col=profit>=0?'var(--accent)':'#c0392b';tableHTML+=`<tr><td>${j.name}</td><td>${fmtM(j.rev)}</td><td>${fmtM(cost)}</td><td style="color:${col};font-weight:600">${fmtM(profit)}</td><td>${margin}%</td></tr>`;});
   const avgM=totalRev>0?((totalProfit/totalRev)*100).toFixed(1):0;
   $('exp-title').textContent=biz+' — Job Profitability';
   $('exp-metrics').innerHTML=`<div class="metric-card"><div class="metric-val">${fmtM(totalRev)}</div><div class="metric-lbl">Total Revenue</div></div><div class="metric-card"><div class="metric-val">${fmtM(totalProfit)}</div><div class="metric-lbl">Total Profit</div></div><div class="metric-card"><div class="metric-val">${avgM}%</div><div class="metric-lbl">Avg Margin</div></div>`;
@@ -1124,21 +1085,10 @@ function generateBilling() {
   const biz=$('bil-biz').value||'Your Business';
   const rows=document.querySelectorAll('.bil-row');
   let clients=[];
-  rows.forEach(r=>{
-    const name=r.querySelector('.bc-name').value.trim();
-    const amount=parseFloat(r.querySelector('.bc-amount').value)||0;
-    const freq=r.querySelector('.bc-freq').value;
-    if(name&&amount) clients.push({name,amount,freq});
-  });
+  rows.forEach(r=>{const name=r.querySelector('.bc-name').value.trim();const amount=parseFloat(r.querySelector('.bc-amount').value)||0;const freq=r.querySelector('.bc-freq').value;if(name&&amount)clients.push({name,amount,freq});});
   if(!clients.length){alert('Please enter at least one client.');return;}
   let totalM=0,totalA=0,tableHTML='';
-  clients.forEach(c=>{
-    const annual=c.freq==='Weekly'?c.amount*52:c.amount*12;
-    const monthly=c.freq==='Weekly'?c.amount*4.33:c.amount;
-    const next=addDays(c.freq==='Weekly'?7:30);
-    totalA+=annual; totalM+=monthly;
-    tableHTML+=`<tr><td>${c.name}</td><td>${fmtM(c.amount)}</td><td>${c.freq}</td><td>${next}</td><td>${fmtM(annual)}</td></tr>`;
-  });
+  clients.forEach(c=>{const annual=c.freq==='Weekly'?c.amount*52:c.amount*12;const monthly=c.freq==='Weekly'?c.amount*4.33:c.amount;const next=addDays(c.freq==='Weekly'?7:30);totalA+=annual;totalM+=monthly;tableHTML+=`<tr><td>${c.name}</td><td>${fmtM(c.amount)}</td><td>${c.freq}</td><td>${next}</td><td>${fmtM(annual)}</td></tr>`;});
   $('bil-title').textContent=biz+' — Billing Schedule';
   $('bil-metrics').innerHTML=`<div class="metric-card"><div class="metric-val">${clients.length}</div><div class="metric-lbl">Active Clients</div></div><div class="metric-card"><div class="metric-val">${fmtM(Math.round(totalM))}</div><div class="metric-lbl">Monthly Revenue</div></div><div class="metric-card"><div class="metric-val">${fmtM(totalA)}</div><div class="metric-lbl">Annual Value</div></div>`;
   $('bil-table').innerHTML=tableHTML;
@@ -1156,13 +1106,7 @@ function generateReport() {
   const team=parseInt($('rep-team').value)||0;
   const notes=$('rep-notes').value.trim();
   if(!jobs||!rev){alert('Please enter jobs completed and revenue.');return;}
-  const profit=rev-exp;
-  const margin=((profit/rev)*100).toFixed(1);
-  const perJob=(rev/jobs).toFixed(0);
-  const payrollRatio=exp>0?((exp/rev)*100).toFixed(1):0;
-  const perfLevel=margin>40?'strong':margin>25?'solid':'tight';
-  const jobRate=jobs>0&&team>0?(jobs/team).toFixed(1):0;
-  const notesLine=notes?` Notable this period: ${notes}.`:'';
+  const profit=rev-exp;const margin=((profit/rev)*100).toFixed(1);const perJob=(rev/jobs).toFixed(0);const payrollRatio=exp>0?((exp/rev)*100).toFixed(1):0;const perfLevel=margin>40?'strong':margin>25?'solid':'tight';const jobRate=jobs>0&&team>0?(jobs/team).toFixed(1):0;const notesLine=notes?` Notable this period: ${notes}.`:'';
   const p1=`${biz} completed ${jobs} jobs ${period==='Weekly'?'this week':'this month'}, generating ${fmtM(rev)} in revenue against ${fmtM(exp)} in expenses — a net profit of ${fmtM(profit)} and a ${margin}% margin. That is a ${perfLevel} result for a service business of this size.${notesLine}`;
   const p2=team>0?`With ${team} team members averaging ${jobRate} jobs each, the operation is running at ${fmtM(perJob)} revenue per job. The cost-to-revenue ratio sits at ${payrollRatio}%, which ${parseFloat(payrollRatio)<40?'is within a healthy range for a labour-intensive service business':'is worth monitoring — keeping this below 40% protects margins as you scale'}. ${profit>0?'The business is covering its costs and generating a return this period.':'Revenue is not covering expenses this period — reviewing job pricing or cost controls would be the immediate priority.'}`:`At ${fmtM(perJob)} per job, the current pricing is ${parseFloat(perJob)>150?'supporting healthy margins':'worth reviewing against cost of delivery'}. ${profit>0?'The business closed the period in profit.':'Expenses exceeded revenue this period.'}`;
   $('rep-title').textContent=biz+' — '+period+' Report';
@@ -1176,14 +1120,192 @@ function generateReport() {
   $('rep-result').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-// Scroll reveal
-const revealEls=document.querySelectorAll('.reveal');
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{
-    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}
+// ── PDF EXTRACTION DEMO ───────────────────────────────────────
+const PDF_DATA = {
+  vendor:'BuildRight Supplies', invoiceNum:'INV-2026-0441', date:'April 22, 2026',
+  lineItems:'Structural Timber ×120, Concrete Mix ×40, Roofing Nails ×12, Delivery ×1',
+  subtotal:'$1,200.00', tax:'$99.00 (8.25%)', total:'$1,299.00', terms:'Net 30 — Due May 22, 2026'
+};
+
+const FIELDS = [
+  {id:'vendor', label:'Vendor',     val:PDF_DATA.vendor},
+  {id:'invnum', label:'Invoice #',  val:PDF_DATA.invoiceNum},
+  {id:'date',   label:'Date',       val:PDF_DATA.date},
+  {id:'items',  label:'Line Items', val:PDF_DATA.lineItems},
+  {id:'sub',    label:'Subtotal',   val:PDF_DATA.subtotal},
+  {id:'tax',    label:'Tax',        val:PDF_DATA.tax},
+  {id:'total',  label:'Total Due',  val:PDF_DATA.total},
+  {id:'terms',  label:'Terms',      val:PDF_DATA.terms},
+];
+
+function runPdfExtraction() {
+  const btn = $('pdf-extract-btn');
+  btn.disabled = true; btn.textContent = '⚙️ Extracting…';
+
+  // Animate pipeline steps
+  setTimeout(()=>{ $('ps1').classList.add('done'); $('ps2').classList.add('active'); }, 300);
+  setTimeout(()=>{ $('ps2').classList.remove('active'); $('ps2').classList.add('done'); $('ps3').classList.add('active'); }, 900);
+  setTimeout(()=>{ $('ps3').classList.remove('active'); $('ps3').classList.add('done'); }, 1600);
+
+  $('pdf-result').style.display = 'block';
+  $('pdf-status-text').textContent = 'Reading document…';
+
+  // Animate fields one by one
+  FIELDS.forEach((f, i) => {
+    setTimeout(() => {
+      $('ef-'+f.id).classList.add('highlighted');
+      $('ev-'+f.id).textContent = f.val;
+      setTimeout(() => { $('es-'+f.id).classList.add('visible'); }, 300);
+      if (i === FIELDS.length - 1) {
+        // All done
+        setTimeout(() => {
+          $('pdf-status-text').textContent = '✓ All 8 fields extracted and logged to Google Sheet';
+          $('ps1').style.background = 'var(--accent)'; // already done via class but belt+suspenders
+          $('pdf-sheet-ts').textContent = nowTs();
+          $('pdf-metrics').style.display = 'grid';
+          $('pdf-sheet-wrap').style.display = 'block';
+          $('pdf-email-wrap').style.display = 'block';
+          $('pdfextract-cta').style.display = 'block';
+          $('pdf-sheet-wrap').scrollIntoView({behavior:'smooth', block:'start'});
+          btn.textContent = '✓ Extracted';
+          btn.style.opacity = '0.6';
+        }, 500);
+      }
+    }, 400 + i * 220);
   });
+
+  // Fire to Apps Script for usage tracking (no-cors)
+  fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify({type:'demo_use', demo:'PDF Extraction'}) }).catch(()=>{});
+}
+
+function sendPdfEmail() {
+  const email = $('pdf-email').value.trim();
+  if (!email || !email.includes('@')) { alert('Please enter a valid email.'); return; }
+  const btn = $('pdf-email-btn');
+  btn.disabled = true; btn.textContent = 'Sending…';
+
+  fetch(SCRIPT_URL, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({ type:'pdf_extract', ...PDF_DATA, email })
+  })
+  .then(r => r.json())
+  .then(d => {
+    const s = $('pdf-email-status');
+    s.style.display = 'block';
+    s.textContent = d.success ? '✓ Email sent! Check your inbox — the sheet data is in there.' : '✗ Something went wrong. Try again.';
+    btn.textContent = d.success ? '✓ Sent' : 'Try Again';
+    if (!d.success) btn.disabled = false;
+  })
+  .catch(() => {
+    const s = $('pdf-email-status');
+    s.style.display = 'block';
+    s.textContent = '✗ Could not reach server. Apps Script may need a new deployment.';
+    btn.disabled = false; btn.textContent = 'Send to My Inbox →';
+  });
+}
+
+// ── JOB TRACKER DEMO ─────────────────────────────────────────
+function runJobComplete() {
+  const job    = $('jt-job').value.trim()    || 'CBD Office Block — April Clean';
+  const client = $('jt-client').value.trim() || 'Horizon Properties';
+  const worker = $('jt-worker').value.trim() || 'James R.';
+  const status = $('jt-status').value.replace('✅ ','').replace('⏳ ','');
+  const hours  = parseFloat($('jt-hours').value) || 0;
+  const rate   = parseFloat($('jt-rate').value)  || 0;
+  const email  = $('jt-email').value.trim();
+
+  if (!hours || !rate) { alert('Please enter hours worked and hourly rate.'); return; }
+
+  const otThreshold = 40;
+  const reg  = Math.min(hours, otThreshold);
+  const ot   = Math.max(0, hours - otThreshold);
+  const pay  = (reg * rate) + (ot * rate * 1.5);
+  const payStr = '$' + pay.toFixed(2);
+  const ts   = nowTs();
+  const week = weekStr();
+
+  // Animate pipeline
+  $('jps1').classList.add('done');
+  setTimeout(()=>{ $('jps2').classList.add('active'); }, 300);
+  setTimeout(()=>{ $('jps2').classList.remove('active'); $('jps2').classList.add('done'); $('jps3').classList.add('active'); }, 900);
+  setTimeout(()=>{ $('jps3').classList.remove('active'); $('jps3').classList.add('done'); }, 1500);
+
+  $('jt-result').style.display = 'block';
+  $('jt-status-text').textContent = 'Logging to both sheets…';
+
+  setTimeout(() => {
+    $('jt-status-text').textContent = '✓ Job Tracker updated · Payroll Log updated' + (email ? ' · Email sent' : '');
+
+    // Metrics
+    $('jt-metrics').innerHTML =
+      `<div class="metric-card"><div class="metric-val">${hours}h</div><div class="metric-lbl">Hours Worked</div></div>` +
+      `<div class="metric-card"><div class="metric-val">${ot > 0 ? ot+'h OT' : 'No OT'}</div><div class="metric-lbl">Overtime</div></div>` +
+      `<div class="metric-card"><div class="metric-val">${payStr}</div><div class="metric-lbl">Worker Pay</div></div>`;
+
+    // OT visual bar
+    if (ot > 0) {
+      $('jt-ot-visual').style.display = 'block';
+      const regPct = (reg / hours * 100).toFixed(1);
+      const otPct  = (ot  / hours * 100).toFixed(1);
+      $('jt-ot-bars').innerHTML =
+        `<div style="display:flex;gap:4px;height:28px;border-radius:6px;overflow:hidden;margin-bottom:10px;">
+          <div style="width:${regPct}%;background:var(--accent);transition:width 0.8s ease;"></div>
+          <div style="width:${otPct}%;background:var(--accent2);transition:width 0.8s ease;"></div>
+        </div>
+        <div style="display:flex;gap:20px;font-size:12px;">
+          <div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--accent);margin-right:5px;vertical-align:middle;"></span>Regular: ${reg}h @ $${rate.toFixed(2)}/hr = $${(reg*rate).toFixed(2)}</div>
+          <div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--accent2);margin-right:5px;vertical-align:middle;"></span>OT: ${ot}h @ $${(rate*1.5).toFixed(2)}/hr = $${(ot*rate*1.5).toFixed(2)}</div>
+        </div>`;
+    }
+
+    // Sheet 1
+    $('jt-job-rows').innerHTML =
+      `<tr class="new-row">
+        <td class="accent">${ts}</td>
+        <td>${job}</td><td>${client}</td><td>${worker}</td>
+        <td>${hours}h</td><td>$${rate.toFixed(2)}/hr</td>
+        <td class="accent">${payStr}</td>
+        <td><span style="color:var(--accent);font-weight:600;">${status}</span></td>
+      </tr>
+      <tr class="ghost-row"><td colspan="8" style="padding:8px 12px;font-size:11px;">← Previous jobs appear above</td></tr>`;
+
+    // Sheet 2
+    $('jt-pay-rows').innerHTML =
+      `<tr class="new-row">
+        <td class="accent">${ts}</td>
+        <td>${worker}</td><td>${job}</td>
+        <td>${reg}h</td><td>${ot > 0 ? ot+'h' : '—'}</td>
+        <td>$${rate.toFixed(2)}</td>
+        <td class="accent">${payStr}</td>
+        <td>${week}</td>
+      </tr>
+      <tr class="ghost-row"><td colspan="8" style="padding:8px 12px;font-size:11px;">← Previous payroll entries appear above</td></tr>`;
+
+    $('jt-cta').style.display = 'block';
+    $('jt-result').scrollIntoView({behavior:'smooth', block:'start'});
+
+    // Fire to Apps Script
+    fetch(SCRIPT_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ type:'job_complete', jobName:job, client, worker, hours, rate, otThreshold, status, email })
+    })
+    .then(r => r.json())
+    .then(d => {
+      if (d.success && email) { $('jt-email-sent').style.display = 'block'; }
+    })
+    .catch(() => {});
+
+  }, 1200);
+}
+
+// ── SCROLL REVEAL ─────────────────────────────────────────────
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => { if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);} });
 },{threshold:0.1});
-revealEls.forEach(el=>obs.observe(el));
+revealEls.forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
